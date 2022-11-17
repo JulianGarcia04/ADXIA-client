@@ -1,17 +1,16 @@
 import React from "react";
 import Image from 'next/image';
 import style from './styles.module.scss';
-import figureBackground from "../../assets/images/Group.svg";
 
-function View({coordinates}) {
+function View({coordinates, src}) {
   return (
-    <div className={style.figureBackground} style={coordinates}>
+    <figure className={style.figureBackground} style={coordinates}>
       <Image
-        src={figureBackground}
+        src={src}
         alt="Figure Image Background"
         className={style.figureBackground}
       />
-    </div>
+    </figure>
   );
 }
 

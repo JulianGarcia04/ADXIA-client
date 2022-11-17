@@ -1,0 +1,58 @@
+.cardProduct {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0px;
+    width: 47%;
+    height: 16.875em;
+}
+
+.imageInfo{
+    display: flex;
+    justify-content: space-between;
+    width: 91.3333%;
+}
+
+.resumeInfo{
+    width: 91.333%;
+    text-align: justify;
+}
+
+.presentationInfo{
+    display: flex;
+    justify-content: space-between;
+    width: 91.333%;
+    box-sizing: border-box;
+
+    span{
+        padding: 2px 5px;
+        box-sizing: border-box;
+        color: #E1E1EE;
+    }
+
+    span:hover{
+        border: 1px solid var(--primary-background);
+        border-radius: 10px;
+    }
+}
+
+.priceInfo{
+    display: flex;
+    flex-direction: column;
+    width: 91.333%;
+
+    h1{
+        font-size: 22px;
+        color: #000;
+        font-weight: 500;
+        text-align: end;
+    }
+
+    div{
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        font-size: 12px;
+    }
+}

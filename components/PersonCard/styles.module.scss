@@ -1,0 +1,22 @@
+.cardContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 4.125em;
+}
+
+.infoPerson{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+
+    h1{
+        font-size: 18px;
+        font-weight: 500;
+    }
+
+    span{
+        font-size: 13px;
+    }
+}
