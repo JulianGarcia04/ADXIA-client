@@ -1,12 +1,12 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import DefaultLayout from "../../layout/DefaultLayout";
-import NavBar from "../../components/NavBar/NavBar";
-import FigureBackground from '../../components/FigureBackground/FigureBackground';
-import OrdersCard from '../../components/OrdersCard/OrdersCard';
-import Avatar from "../../assets/images/Avatar.svg";
-import Figure from '../../assets/images/GroupWhite.svg';
+import DefaultLayout from "@/layout/DefaultLayout";
+import NavBar from "@/components/NavBar/NavBar";
+import FigureBackground from '@/components/FigureBackground/FigureBackground';
+import OrdersCard from '@/components/OrdersCard/OrdersCard';
+import Avatar from "@/assets/images/Avatar.svg";
+import Figure from '@/assets/images/GroupWhite.svg';
 import { Settings, Home, Plus, BarChart2 } from "react-feather";
 import styles from "./home.module.scss";
 

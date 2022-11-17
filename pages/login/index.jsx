@@ -1,11 +1,11 @@
 import React from "react";
-import DefaultLayout from "../../layout/DefaultLayout";
+import DefaultLayout from "@/layout/DefaultLayout";
 import style from "./login.module.scss";
-import TextField from "../../components/TextField/TextField";
-import FigureBackground from "../../components/FigureBackground/FigureBackground";
-import Figure from '../../assets/images/Group.svg'
+import TextField from "@/components/TextField/TextField";
+import FigureBackground from "@/components/FigureBackground/FigureBackground";
+import Figure from '@/assets/images/Group.svg'
 import { Formik, Form } from "formik";
-import UserModel from '../../models/User/Login';
+import UserModel from '@/models/User/Login';
 
 
 export default function Index() {
