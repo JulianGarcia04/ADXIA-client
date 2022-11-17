@@ -1,0 +1,23 @@
+.buttonsContainers{
+    display: flex;
+    justify-content: flex-end;
+    width: 91.3333333%;
+
+    button{
+        border: none;
+        border-radius: 5px;
+        height: 100%;
+        width: 25%;
+    }
+}
+
+.first{
+    margin-right: 15px;
+    background-color: #F1F1FF;
+    color: var(--primary-background);
+}
+
+.second{
+    background-color: var(--primary-background);
+    color: #fff;
+}
