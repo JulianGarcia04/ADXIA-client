@@ -2,7 +2,7 @@ import React from "react";
 import { Field, ErrorMessage } from "formik";
 import styles from "./styles.module.scss";
 
-export default function View({ type, name, title, id }) {
+export default function View({ type, name, title, id, disabled, readOnly }) {
   return (
     <div className={styles.container}>
       <label htmlFor={id}>{title}</label>
@@ -11,6 +11,8 @@ export default function View({ type, name, title, id }) {
         name={name}
         id={id}
         className={styles.input}
+        disabled={disabled}
+        readOnly={readOnly}
       />
       <ErrorMessage
         name={name}

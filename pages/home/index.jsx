@@ -7,7 +7,7 @@ import FigureBackground from '@/components/FigureBackground/FigureBackground';
 import OrdersCard from '@/components/OrdersCard/OrdersCard';
 import Avatar from "@/assets/images/Avatar.svg";
 import Figure from '@/assets/images/GroupWhite.svg';
-import { Settings, Home, Plus, BarChart2 } from "react-feather";
+import { Home, Plus, BarChart2 } from "react-feather";
 import styles from "./home.module.scss";
 
 function Index() {
@@ -18,12 +18,7 @@ function Index() {
         <FigureBackground src={Figure} right={0} top={0} rotate={50}/>
         <FigureBackground src={Figure} left={0} bottom={0} rotate={10}/>
         <div className={styles.informationContainer}>
-          <div>
-            <Image src={Avatar} alt="Perfil Image" width={50} height={50} />
-            <Link href={"/config"}>
-              <Settings color="white" strokeWidth={1} />
-            </Link>
-          </div>
+          <Image src={Avatar} alt="Perfil Image" width={50} height={50} />
           <Link href={'/orders'}>Como han estado las ventas?</Link>
         </div>
         <div className={styles.nameConatainer}>
@@ -60,7 +55,7 @@ function Index() {
             </div>
           </Link>
 
-          <Link href={'/orders'}>
+          <Link href={'/orders/add'}>
             <div className={styles.add}>
               <Plus color="white"/>
             </div>

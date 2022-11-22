@@ -1,5 +1,9 @@
 .navBar{
     position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     bottom: 0;
     height: 5.25em;
     width: 100%;

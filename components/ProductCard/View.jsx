@@ -17,7 +17,7 @@ function View({styles}) {
         />
         <MoreHorizontal color="#000" />
       </header>
-      <spa className={style.resumeInfo}>Ristras de leche Klim con sabor a chocolate blanc..</spa>
+      <span className={style.resumeInfo}>Ristras de leche Klim con sabor a chocolate blanc..</span>
       <section className={style.presentationInfo}>
         <span>x250</span>
         <span>x350</span>

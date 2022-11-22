@@ -24,10 +24,12 @@ function Index() {
         <div className={style.productBastket}>
           <h1>Cesta de productos</h1>
           <div className={style.productList}>
-            <div className={style.addProduct}>
-              <Plus color='#01237A' width={75} height={75}/>
-              <span>Agregar producto</span>
-            </div>
+            <Link href={'/orders/add/product'}>
+              <div className={style.addProduct}>
+                <Plus color='#01237A' width={75} height={75}/>
+                <span>Agregar producto</span>
+              </div>
+            </Link>
             <ProductCard/>
             <ProductCard/>
             <ProductCard/>
@@ -39,7 +41,7 @@ function Index() {
               <span>Total</span>
               <h1>$25.000</h1>
             </div>
-            <ButtonsNavBar first={'Cancelar'} second={'Agregar'} height={'45%'}/>
+            <ButtonsNavBar type={'submit'} title={'Agregar'} height={'45%'}/>
           </div>
         </NavBar>
     </PrincipalLayout>

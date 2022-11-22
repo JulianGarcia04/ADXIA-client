@@ -1,11 +1,27 @@
 import React from "react";
-import style from './styles.module.scss';
+import style from "./styles.module.scss";
 
-function View({first, second, styles}) {
+function View({
+  title,
+  styles,
+  onCancel,
+  onClick,
+  form,
+  type,
+}) {
   return (
     <div className={style.buttonsContainers} style={styles}>
-      <button className={style.first}>{first}</button>
-      <button className={style.second}>{second}</button>
+      <button className={style.first} onClick={onCancel}>
+        Cancelar
+      </button>
+      <button
+        type={type}
+        className={style.second}
+        form={form}
+        onClick={onClick}
+      >
+        {title}
+      </button>
     </div>
   );
 }

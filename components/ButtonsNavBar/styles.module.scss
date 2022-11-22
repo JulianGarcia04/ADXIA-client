@@ -1,13 +1,15 @@
 .buttonsContainers{
     display: flex;
+    align-items: center;
     justify-content: flex-end;
     width: 91.3333333%;
 
     button{
+        padding: 0px 20px;
         border: none;
         border-radius: 5px;
         height: 100%;
-        width: 25%;
+        width: 45%;
     }
 }
 
