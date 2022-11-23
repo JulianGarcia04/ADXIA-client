@@ -41,7 +41,7 @@ function Index() {
               <span>Total</span>
               <h1>$25.000</h1>
             </div>
-            <ButtonsNavBar type={'submit'} title={'Agregar'} height={'45%'}/>
+            <ButtonsNavBar type={'submit'} title={'Agregar'} height={'35%'}/>
           </div>
         </NavBar>
     </PrincipalLayout>
