@@ -6,6 +6,7 @@ import styles from "./add.module.scss";
 import ButtonsNavBar from "~/components/ButtonsNavBar/ButtonsNavBar";
 import ImageField from "~/components/ImageField/ImageField";
 import TextField from "~/components/TextField/TextField";
+import CreateEdit from "~/validators/Products/Create-Edit";
 
 function Index() {
   const idForm = useId();
@@ -21,6 +22,7 @@ function Index() {
           tel: "",
           adress: "",
         }}
+        validationSchema={CreateEdit}
         onSubmit={(values) => {
           console.log(values);
         }}
@@ -28,11 +30,15 @@ function Index() {
         {() => (
           <Form id={`${idForm}-createUser`} className={styles.form}>
             <ImageField alt="image profile of a client" />
-            <TextField title={'Nombres'} type={'text'} name={'name'}/>
-            <TextField title={'Apellidos'} type={'text'} name={'lastname'}/>
-            <TextField title={'Número de documento'} type={'number'} name={'nroDoc'}/>
-            <TextField title={'Telefono'} type={'tel'} name={'tel'}/>
-            <TextField title={'Dirección'} type={'text'} name={'adress'}/>
+            <TextField title={"Nombres"} type={"text"} name={"name"} />
+            <TextField title={"Apellidos"} type={"text"} name={"lastname"} />
+            <TextField
+              title={"Número de documento"}
+              type={"number"}
+              name={"nroDoc"}
+            />
+            <TextField title={"Telefono"} type={"tel"} name={"tel"} />
+            <TextField title={"Dirección"} type={"text"} name={"adress"} />
           </Form>
         )}
       </Formik>
