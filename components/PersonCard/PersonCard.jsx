@@ -1,10 +1,18 @@
-import React from 'react';
-import View from './View';
+import React from "react";
+import View from "./View";
+import useModal from "~/hooks/useModal";
 
-function PersonCard() {
+function PersonCard({ options, idPerson }) {
+  const { isOpen, showModal } = useModal();
+
   return (
-    <View/>
-  )
+    <View
+      options={options}
+      modalState={isOpen}
+      changeModalState={showModal}
+      idPerson={idPerson}
+    />
+  );
 }
 
-export default PersonCard
+export default PersonCard;

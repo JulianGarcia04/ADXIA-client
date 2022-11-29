@@ -1,9 +1,8 @@
 import React from "react";
-import Link from "next/link";
 import NavBar from "~/components/NavBar/NavBar";
 import SearchInput from "~/components/SearchInput/SearchInput";
 import PrincipalLayout from "~/layout/PrincipalLayout";
-import { Plus } from "react-feather";
+import OptionsNavBar from "~/components/OptionsNavBar/OptionsNavBar";
 import style from "./orders.module.scss";
 import OrdersCard from "~/components/OrdersCard/OrdersCard";
 
@@ -22,13 +21,7 @@ function index() {
         <OrdersCard/>
       </div>
       <NavBar>
-        <div className={style.navBar}>
-          <Link href={"/orders/add"}>
-            <div className={style.add}>
-              <Plus color="white" />
-            </div>
-          </Link>
-        </div>
+        <OptionsNavBar linkAdd={'/orders/add'}/>
       </NavBar>
     </PrincipalLayout>
   );

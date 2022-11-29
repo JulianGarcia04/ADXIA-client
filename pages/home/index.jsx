@@ -9,6 +9,7 @@ import Avatar from "@/assets/images/Avatar.svg";
 import Figure from '@/assets/images/GroupWhite.svg';
 import { Home, Plus, BarChart2 } from "react-feather";
 import styles from "./home.module.scss";
+import OptionsNavBar from "~/components/OptionsNavBar/OptionsNavBar";
 
 function Index() {
   return (
@@ -48,25 +49,7 @@ function Index() {
         <OrdersCard/>
       </section>
       <NavBar>
-        <div className={styles.navBar}>
-          <Link href={'/home'}>
-            <div className="active">
-              <Home/>
-            </div>
-          </Link>
-
-          <Link href={'/orders/add'}>
-            <div className={styles.add}>
-              <Plus color="white"/>
-            </div>
-          </Link>
-
-          <Link href={'/orders'}>
-            <div>
-              <BarChart2 color="#D6E0F6"/>
-            </div>
-          </Link>
-        </div>
+        <OptionsNavBar linkAdd={'/orders/add'}/>
       </NavBar>
     </DefaultLayout>
   );
