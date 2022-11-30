@@ -5,7 +5,7 @@ import TextField from "@/components/TextField/TextField";
 import FigureBackground from "@/components/FigureBackground/FigureBackground";
 import Figure from '@/assets/images/Group.svg'
 import { Formik, Form } from "formik";
-import UserModel from '~/validators/User/Login';
+import UserModel from '~/validators/Employee/Login';
 
 
 export default function Index() {

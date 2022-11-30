@@ -6,12 +6,12 @@ import styles from "./edit.module.scss";
 import ButtonsNavBar from "~/components/ButtonsNavBar/ButtonsNavBar";
 import ImageField from "~/components/ImageField/ImageField";
 import TextField from "~/components/TextField/TextField";
-import CreateEdit from "~/validators/Client/Create-Edit";
+import createEdit from "~/validators/Employee/create-edit";
 
 function Id() {
   const idForm = useId();
   return (
-    <PrincipalLayout title={"Editar cliente"}>
+    <PrincipalLayout title={"Editar empleado"}>
       {/* Create form */}
       <Formik
         initialValues={{
@@ -19,17 +19,17 @@ function Id() {
           name: "",
           lastname: "",
           nroDoc: "",
-          tel: "",
-          adress: "",
+          birthdate: "",
+          email: "",
         }}
-        validationSchema={CreateEdit}
+        validationSchema={createEdit}
         onSubmit={(values) => {
           console.log(values);
         }}
       >
         {() => (
           <Form id={`${idForm}-editClient`} className={styles.form}>
-            <ImageField alt="image profile of a client" />
+            <ImageField alt="image profile of a employee" />
             <TextField title={"Nombres"} type={"text"} name={"name"} />
             <TextField title={"Apellidos"} type={"text"} name={"lastname"} />
             <TextField
@@ -37,8 +37,8 @@ function Id() {
               type={"number"}
               name={"nroDoc"}
             />
-            <TextField title={"Telefono"} type={"tel"} name={"tel"} />
-            <TextField title={"Dirección"} type={"text"} name={"adress"} />
+            <TextField title={"Fecha de nacimiento"} type={'date'} name={"birthdate"} />
+            <TextField title={"Correo electronico"} type={"email"} name={"email"} />
           </Form>
         )}
       </Formik>

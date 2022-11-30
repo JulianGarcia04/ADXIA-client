@@ -2,17 +2,25 @@ import React from "react";
 import Link from "next/link";
 import * as ReactDOM from "react-dom";
 import Image from "next/image";
-import { MoreVertical, Edit3, Trash } from "react-feather";
+import { MoreVertical, Edit3, Trash, Shield } from "react-feather";
 import style from "./styles.module.scss";
 import ModalOptions from "../ModalOptions/ModalOptions";
 
-function View({ options, modalState, changeModalState, idPerson }) {
+function View({ options, modalState, changeModalState, idPerson, employee }) {
   return (
     <div className={style.cardContainer}>
       {modalState &&
         document &&
         ReactDOM.createPortal(
           <ModalOptions changeStateModal={changeModalState}>
+            {
+              employee
+              &&
+              <div>
+                <Shield width={27} height={27}/>
+                <span>Credenciales de acceso</span>
+              </div>
+            }
             <Link href={`/clients/edit/${idPerson}`}>
               <div>
                 <Edit3 width={27} height={27} />

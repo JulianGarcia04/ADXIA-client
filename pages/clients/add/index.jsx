@@ -6,7 +6,7 @@ import styles from "./add.module.scss";
 import ButtonsNavBar from "~/components/ButtonsNavBar/ButtonsNavBar";
 import ImageField from "~/components/ImageField/ImageField";
 import TextField from "~/components/TextField/TextField";
-import CreateEdit from "~/validators/Products/Create-Edit";
+import CreateEdit from "~/validators/Client/Create-Edit";
 
 function Index() {
   const idForm = useId();
@@ -28,7 +28,7 @@ function Index() {
         }}
       >
         {() => (
-          <Form id={`${idForm}-createUser`} className={styles.form}>
+          <Form id={`${idForm}-createClient`} className={styles.form}>
             <ImageField alt="image profile of a client" />
             <TextField title={"Nombres"} type={"text"} name={"name"} />
             <TextField title={"Apellidos"} type={"text"} name={"lastname"} />
@@ -48,7 +48,7 @@ function Index() {
           title={"Crear"}
           type="submit"
           height={"45%"}
-          form={`${idForm}-createUser`}
+          form={`${idForm}-createClient`}
         />
       </NavBar>
     </PrincipalLayout>

@@ -2,7 +2,7 @@ import React from "react";
 import View from "./View";
 import useModal from "~/hooks/useModal";
 
-function PersonCard({ options, idPerson }) {
+function PersonCard({ options, idPerson, employee }) {
   const { isOpen, showModal } = useModal();
 
   return (
@@ -11,6 +11,7 @@ function PersonCard({ options, idPerson }) {
       modalState={isOpen}
       changeModalState={showModal}
       idPerson={idPerson}
+      employee={employee}
     />
   );
 }
