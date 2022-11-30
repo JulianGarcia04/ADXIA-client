@@ -37,9 +37,21 @@ function Index() {
           </div>
         </Link>
         <Link href={'/clients'}>
-          <div>
+          <div style={{borderBottom:'1px solid #F1F1FF'}}>
             <h1>Clientes</h1>
             <span>Visualiza, agregar, elimina y actualiza clientes</span>
+          </div>
+        </Link>
+        <Link href={'/employees'}>
+          <div style={{borderBottom:'1px solid #F1F1FF'}}>
+            <h1>Empleados</h1>
+            <span>Visualiza, agregar, elimina y actualiza empleados</span>
+          </div>
+        </Link>
+        <Link href={'/clients'}>
+          <div>
+            <h1>Productos</h1>
+            <span>Visualiza, agregar, elimina y actualiza productos</span>
           </div>
         </Link>
       </section>
