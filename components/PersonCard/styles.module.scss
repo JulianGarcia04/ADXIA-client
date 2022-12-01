@@ -12,13 +12,14 @@
 .infoPerson{
     display: flex;
     flex-direction: column;
+    width: 65%;
 
     h1{
-        font-size: 18px;
+        font-size: 12px;
         font-weight: 500;
     }
 
     span{
-        font-size: 13px;
+        font-size: 10px;
     }
 }
