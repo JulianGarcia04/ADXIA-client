@@ -1,12 +1,37 @@
 import React from "react";
+import * as ReactDOM from "react-dom";
 import Image from "next/image";
-import { MoreHorizontal, ChevronDown } from "react-feather";
+import { MoreHorizontal, ChevronDown, Edit3, Trash } from "react-feather";
 import style from "./styles.module.scss";
+import ModalOptions from "../ModalOptions/ModalOptions";
+import OptionsModalCard from "../OptionsModalCard/OptionsModalCard";
 
-function View({styles}) {
+function View({
+  idProduct,
+  stateModal,
+  methodChangeStateModal,
+  options,
+  styles,
+}) {
   return (
     <div className={style.cardProduct} style={styles}>
       <header className={style.imageInfo}>
+        {stateModal &&
+          document &&
+          ReactDOM.createPortal(
+            <ModalOptions changeStateModal={methodChangeStateModal}>
+              <OptionsModalCard
+                href={`/product/edit/${idProduct}`}
+                icon={<Edit3 width={27} height={27} />}
+                message="Editar producto"
+              />
+              <OptionsModalCard
+                icon={<Trash width={27} height={27} />}
+                message="Eliminar producto"
+              />
+            </ModalOptions>,
+            document.getElementById("modalContainer")
+          )}
         <Image
           src={
             "https://www.nestle-contigo.co/sites/default/files/2021-09/06.png"
@@ -15,9 +40,13 @@ function View({styles}) {
           width={80}
           height={80}
         />
-        <MoreHorizontal color="#000" />
+        {options && (
+          <MoreHorizontal color="#000" onClick={methodChangeStateModal} />
+        )}
       </header>
-      <span className={style.resumeInfo}>Ristras de leche Klim con sabor a chocolate blanc..</span>
+      <span className={style.resumeInfo}>
+        Ristras de leche Klim con sabor a chocolate blanc..
+      </span>
       <section className={style.presentationInfo}>
         <span>x250</span>
         <span>x350</span>
@@ -27,7 +56,7 @@ function View({styles}) {
         <h1>$24.000</h1>
         <div>
           <span>12 unidades</span>
-          <ChevronDown color="#000" width={20}/>
+          <ChevronDown color="#000" width={20} />
         </div>
       </footer>
     </div>
