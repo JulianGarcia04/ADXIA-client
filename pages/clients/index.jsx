@@ -2,8 +2,8 @@ import React from "react";
 import PrincipalLayout from "~/layout/PrincipalLayout";
 import NavBar from "~/components/NavBar/NavBar";
 import SearchInput from "~/components/SearchInput/SearchInput";
-import PersonCard from "~/components/PersonCard/PersonCard";
 import OptionsNavBar from "~/components/OptionsNavBar/OptionsNavBar";
+import ClientCard from "~/components/ClientCard/ClientCard";
 import style from "./clients.module.scss";
 
 function Index() {
@@ -15,16 +15,16 @@ function Index() {
       color={"#ffff"}
       header={<SearchInput placeholder={"Buscar pedido"} />}
     >
-        <div className={style.containerClientList}>
-            <PersonCard options idPerson={1}/>
-            <PersonCard options idPerson={2}/>
-            <PersonCard options idPerson={3}/>
-            <PersonCard options idPerson={4}/>
-        </div>
-        {/*Navbar*/}
-        <NavBar>
-          <OptionsNavBar linkAdd={'/clients/add'}/>
-        </NavBar>
+      <div className={style.containerClientList}>
+        <ClientCard idClient={1}/>
+        <ClientCard idClient={2}/>
+        <ClientCard idClient={3}/>
+        <ClientCard idClient={4}/>
+      </div>
+      {/*Navbar*/}
+      <NavBar>
+        <OptionsNavBar linkAdd={"/clients/add"} />
+      </NavBar>
     </PrincipalLayout>
   );
 }
