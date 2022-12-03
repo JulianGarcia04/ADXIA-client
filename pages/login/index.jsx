@@ -1,11 +1,12 @@
 import React from "react";
 import DefaultLayout from "@/layout/DefaultLayout";
-import style from "./login.module.scss";
 import TextField from "@/components/TextField/TextField";
 import FigureBackground from "@/components/FigureBackground/FigureBackground";
 import Figure from '@/assets/images/Group.svg'
 import { Formik, Form } from "formik";
 import UserModel from '~/validators/Employee/Login';
+import Button from "~/components/Button/Button";
+import style from "./login.module.scss";
 
 
 export default function Index() {
@@ -38,13 +39,7 @@ export default function Index() {
                 name="password"
                 title="Codigo de acceso"
               />
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className={style.button}
-              >
-                Ingresar
-              </button>
+              <Button title={'Ingresar'} disabled={isSubmitting}/>
             </Form>
           )}
         </Formik>
