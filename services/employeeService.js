@@ -22,3 +22,11 @@ export const getEmployee = ()=> {
 export const getEmployees = ()=> {
 
 }
+
+export const loginEmployee = ()=> {
+
+}
+
+export const logoutEmployee = ()=> {
+  
+}
