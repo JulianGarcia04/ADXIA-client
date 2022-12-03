@@ -1,10 +1,11 @@
 import React from "react";
+import { useMutation } from "react-query";
 import DefaultLayout from "@/layout/DefaultLayout";
 import TextField from "@/components/TextField/TextField";
 import FigureBackground from "@/components/FigureBackground/FigureBackground";
 import Figure from '@/assets/images/Group.svg'
 import { Formik, Form } from "formik";
-import UserModel from '~/validators/Employee/Login';
+import Login from '~/validators/Employee/Login';
 import Button from "~/components/Button/Button";
 import style from "./login.module.scss";
 
@@ -19,10 +20,9 @@ export default function Index() {
         <h1>Hey!! ingresa los siguientes datos para ingresar</h1>
         <Formik
           initialValues={{ nroDoc: "", password: "" }}
-          validationSchema={UserModel}
+          validationSchema={Login}
           onSubmit={(values, { setSubmitting }) => {
             console.log(values);
-            setSubmitting(false);
           }}
         >
           {(
@@ -39,7 +39,7 @@ export default function Index() {
                 name="password"
                 title="Codigo de acceso"
               />
-              <Button title={'Ingresar'} disabled={isSubmitting}/>
+              <Button title={'Ingresar'} type={'submit'}/>
             </Form>
           )}
         </Formik>

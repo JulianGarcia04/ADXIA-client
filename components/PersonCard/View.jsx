@@ -1,8 +1,8 @@
 import React from "react";
-import Link from "next/link";
 import * as ReactDOM from "react-dom";
+import Skeleton from "react-loading-skeleton";
 import Image from "next/image";
-import { MoreVertical, Edit3, Trash, Shield } from "react-feather";
+import { MoreVertical } from "react-feather";
 import style from "./styles.module.scss";
 import ModalOptions from "../ModalOptions/ModalOptions";
 
@@ -10,12 +10,13 @@ function View({
   img,
   title,
   subtitle,
+  isLoading,
   options,
   modalState,
   changeModalState,
   children,
 }) {
-  return (
+  return !isLoading?(
     <div className={style.cardContainer}>
       {modalState &&
         document &&
@@ -40,7 +41,9 @@ function View({
       </div>
       {options && <MoreVertical onClick={changeModalState} />}
     </div>
-  );
+  ):(
+    <Skeleton count={5}/>
+  )
 }
 
 export default View;

@@ -2,7 +2,7 @@ import React from "react";
 import View from "./View";
 import useModal from "~/hooks/useModal";
 
-function PersonCard({ img, title, subtitle, options, children }) {
+function PersonCard({ img, title, subtitle, isLoading, options, children }) {
   const { isOpen, showModal } = useModal();
 
   return (
@@ -10,6 +10,7 @@ function PersonCard({ img, title, subtitle, options, children }) {
       img={img}
       title={title}
       subtitle={subtitle}
+      isLoading={isLoading}
       options={options}
       modalState={isOpen}
       changeModalState={showModal}

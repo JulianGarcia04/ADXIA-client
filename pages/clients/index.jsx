@@ -1,4 +1,6 @@
 import React from "react";
+import { useQuery } from "react-query";
+import {getClients} from '~/controllers/clients/index';
 import PrincipalLayout from "~/layout/PrincipalLayout";
 import NavBar from "~/components/NavBar/NavBar";
 import SearchInput from "~/components/SearchInput/SearchInput";
@@ -6,7 +8,20 @@ import OptionsNavBar from "~/components/OptionsNavBar/OptionsNavBar";
 import ClientCard from "~/components/ClientCard/ClientCard";
 import style from "./clients.module.scss";
 
-function Index() {
+export async function getServerSideProps(context){
+
+  return{
+    props:{
+
+    }
+  }
+}
+
+function Index({ clients }) {
+  const { data, isLoading, error } = useQuery("clients", {
+    initialData: clients,
+  });
+
   return (
     //header
     <PrincipalLayout
@@ -16,10 +31,17 @@ function Index() {
       header={<SearchInput placeholder={"Buscar pedido"} />}
     >
       <div className={style.containerClientList}>
-        <ClientCard idClient={1}/>
-        <ClientCard idClient={2}/>
-        <ClientCard idClient={3}/>
-        <ClientCard idClient={4}/>
+        {data.map((e) => {
+          return (
+            <ClientCard
+              idClient={e.id}
+              img={e.urlImage}
+              name={`${e.name} ${e.lastname}`}
+              place={e.businessPlace}
+              key={e.id}
+            />
+          );
+        })}
       </div>
       {/*Navbar*/}
       <NavBar>

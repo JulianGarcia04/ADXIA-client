@@ -3,9 +3,9 @@ import PersonCard from "../PersonCard/PersonCard";
 import OptionsModalCard from "../OptionsModalCard/OptionsModalCard";
 import { Edit3, Trash } from "react-feather";
 
-function View({idClient, img, name, place}) {
+function View({idClient, img, name, place, isLoading}) {
   return (
-    <PersonCard img={img} title={name} subtitle={place} options>
+    <PersonCard img={img} title={name} subtitle={place} isLoading={isLoading} options>
       <OptionsModalCard
         icon={<Edit3 width={27} height={27} />}
         href={`/clients/edit/${idClient}`}
