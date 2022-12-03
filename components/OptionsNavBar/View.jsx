@@ -7,7 +7,7 @@ function View({linkAdd, path}) {
   return (
     <div className={styles.navBar}>
       <Link href={"/home"}>
-        <div className={path==='/home'?'active':''}>
+        <div className={(path==='/home'?'active ':'') + styles.iconContainer}>
           <Home />
         </div>
       </Link>
@@ -19,7 +19,7 @@ function View({linkAdd, path}) {
       </Link>
 
       <Link href={"/updateing"}>
-        <div className={path==='/updateing'?'active':''}>
+        <div className={(path==='/updateing'?'active ':'') + styles.iconContainer}>
           <BarChart2 color="#D6E0F6" />
         </div>
       </Link>

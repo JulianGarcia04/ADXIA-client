@@ -1,0 +1,12 @@
+.searchHeader{
+    height: 9em;
+    background-color: var(--primary-background);
+}
+
+.productListContainer{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-bottom: 30%;
+    width: 91.333333%;
+}

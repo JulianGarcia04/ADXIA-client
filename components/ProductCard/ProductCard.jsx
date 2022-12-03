@@ -1,14 +1,18 @@
 import React from 'react';
 import View from './View';
+import useModal from '~/hooks/useModal';
 
-function ProductCard({border}) {
+function ProductCard({idProduct, options, border}) {
+
+  const {isOpen, showModal} = useModal();
+
   const styles = {
     border: '1px solid #E5E5EE',
     borderRadius: 10,
     padding: '10px 0px'
   }
   return (
-    <View styles={border?styles:{}}/>
+    <View idProduct={idProduct} stateModal={isOpen} methodChangeStateModal={showModal} options={options} styles={border?styles:{}}/>
   )
 }
 

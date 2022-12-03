@@ -48,7 +48,7 @@ function Index() {
             <span>Visualiza, agregar, elimina y actualiza empleados</span>
           </div>
         </Link>
-        <Link href={'/clients'}>
+        <Link href={'/products'}>
           <div>
             <h1>Productos</h1>
             <span>Visualiza, agregar, elimina y actualiza productos</span>

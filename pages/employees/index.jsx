@@ -1,10 +1,10 @@
 import React from "react";
 import NavBar from "~/components/NavBar/NavBar";
 import OptionsNavBar from "~/components/OptionsNavBar/OptionsNavBar";
-import PersonCard from "~/components/PersonCard/PersonCard";
 import SearchInput from "~/components/SearchInput/SearchInput";
 import PrincipalLayout from "~/layout/PrincipalLayout";
 import style from "./employees.module.scss";
+import EmployeeCard from "~/components/EmployeeCard/EmployeeCard";
 
 function Index() {
   return (
@@ -15,13 +15,13 @@ function Index() {
       header={<SearchInput placeholder={"Buscar empleado"} />}
     >
       <div className={style.containerEmployeesList}>
-        <PersonCard options employee idPerson={1}/>
-        <PersonCard options employee idPerson={2}/>
-        <PersonCard options employee idPerson={3}/>
-        <PersonCard options employee idPerson={4}/>
+        <EmployeeCard idEmployee={1}/>
+        <EmployeeCard idEmployee={2}/>
+        <EmployeeCard idEmployee={3}/>
+        <EmployeeCard idEmployee={4}/>
       </div>
       <NavBar>
-        <OptionsNavBar linkAdd={'/employees/add'}/>
+        <OptionsNavBar linkAdd={"/employees/add"} />
       </NavBar>
     </PrincipalLayout>
   );
