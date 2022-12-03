@@ -3,7 +3,16 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images:{
-    domains: ['www.nestle-contigo.co', 'scontent.fctg1-4.fna.fbcdn.net']
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "**"
+      },
+      {
+        protocol: "https",
+        hostname: "**"
+      }
+    ]
   }
 }
 
