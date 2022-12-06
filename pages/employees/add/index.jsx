@@ -6,7 +6,7 @@ import styles from "./add.module.scss";
 import ButtonsNavBar from "~/components/ButtonsNavBar/ButtonsNavBar";
 import ImageField from "~/components/ImageField/ImageField";
 import TextField from "~/components/TextField/TextField";
-import createEdit from "~/validators/Employee/create-edit";
+import {createValidator} from "~/modules/employees/validators";
 
 function Index() {
   const idForm = useId();
@@ -22,7 +22,7 @@ function Index() {
           birthdate: "",
           email: "",
         }}
-        validationSchema={createEdit}
+        validationSchema={createValidator}
         onSubmit={(values) => {
           console.log(values);
         }}

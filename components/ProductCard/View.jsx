@@ -2,9 +2,9 @@ import React from "react";
 import * as ReactDOM from "react-dom";
 import Image from "next/image";
 import { MoreHorizontal, ChevronDown, Edit3, Trash } from "react-feather";
-import style from "./styles.module.scss";
 import ModalOptions from "../ModalOptions/ModalOptions";
 import OptionsModalCard from "../OptionsModalCard/OptionsModalCard";
+import style from "./styles.module.scss";
 
 function View({
   idProduct,
@@ -21,7 +21,7 @@ function View({
           ReactDOM.createPortal(
             <ModalOptions changeStateModal={methodChangeStateModal}>
               <OptionsModalCard
-                href={`/product/edit/${idProduct}`}
+                href={`/products/edit/${idProduct}`}
                 icon={<Edit3 width={27} height={27} />}
                 message="Editar producto"
               />

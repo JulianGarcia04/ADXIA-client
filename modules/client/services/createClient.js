@@ -1,8 +1,9 @@
 import { config } from './config/index';
+import Http from '~/modules/package/http';
 
-const createClient = async (data, fetcher)=> {
+const createClient = async (data)=> {
 
-    const client = await fetcher.post(`${config.CLIENT_SERVICE_URI}/client`, {
+    const client = await Http.post(`${config.CLIENT_SERVICE_URI}/client`, {
       name: data.name,
       surname: data.lastname,
       nroDocument: data.nroDocument,

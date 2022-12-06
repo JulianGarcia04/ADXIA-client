@@ -4,8 +4,9 @@ import { X } from "react-feather";
 import ImageField from "../ImageField/ImageField";
 import TextField from "../TextField/TextField";
 import TextAreaField from "../TextAreaField/TextAreaField";
-import styles from "./styles.module.scss";
 import Button from "../Button/Button";
+import {presentationValidator} from "~/modules/products/validators"
+import styles from "./styles.module.scss";
 
 function View({changeStateModal}) {
   return (
@@ -17,6 +18,7 @@ function View({changeStateModal}) {
           quantity: "",
           price: "",
         }}
+        validationSchema={presentationValidator}
         onSubmit={(values) => {
           console.log(values);
         }}

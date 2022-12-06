@@ -1,4 +1,4 @@
-export {import as createClient } from './createClient';
-export {import as getClients} from './getClients';
-export {import as updateClient} from './updateClient';
-export {import as deleteClient} from './deleteClient';
+export {default as createClient } from './createClient';
+export {default as getClients} from './getClients';
+export {default as updateClient} from './updateClient';
+export {default as deleteClient} from './deleteClient';

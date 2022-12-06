@@ -1,4 +1,5 @@
 .textFieldContainer{
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -13,4 +14,19 @@
         border-radius: 5px;
         background-color: var(--secondary-background);
     }
+}
+
+.ErrorMessage {
+    position: absolute;
+    display: flex;
+    align-items: flex-end;
+    bottom: 0;
+    width: 100%;
+    height: 85%;
+    padding: 0px 10px;
+    box-sizing: border-box;
+    border: 1px rgb(191, 3, 3) solid;
+    border-radius: 3px;
+    color: rgb(191, 3, 3);
+    font-size: 11px;
 }

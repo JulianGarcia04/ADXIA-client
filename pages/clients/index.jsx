@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery } from "react-query";
-import {getClients} from '~/controllers/clients/index';
+import { getClients } from '~/modules/client/controllers';
 import PrincipalLayout from "~/layout/PrincipalLayout";
 import NavBar from "~/components/NavBar/NavBar";
 import SearchInput from "~/components/SearchInput/SearchInput";

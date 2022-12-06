@@ -1,4 +1,5 @@
 import React from "react";
+import { ErrorMessage } from "formik";
 import styles from "./styles.module.scss";
 
 function View({ title, name, value, id, cols, rows, onChange, onBlur }) {
@@ -14,6 +15,11 @@ function View({ title, name, value, id, cols, rows, onChange, onBlur }) {
         onChange={onChange}
         onBlur={onBlur}
       ></textarea>
+      <ErrorMessage
+        name={name}
+        component={"div"}
+        className={styles.ErrorMessage}
+      />
     </label>
   );
 }

@@ -7,6 +7,7 @@ import NavBar from "~/components/NavBar/NavBar";
 import ButtonsNavBar from "~/components/ButtonsNavBar/ButtonsNavBar";
 import Button from "~/components/Button/Button";
 import SubProductForm from "~/components/SubProductForm/SubProductForm";
+import {createProductValidator} from '~/modules/products/validators'
 import styles from "./add.module.scss";
 
 function Index() {
@@ -18,6 +19,7 @@ function Index() {
       <section className={styles.principalContainer}>
         <Formik
           initialValues={{ brand: "", name: "" }}
+          validationSchema={createProductValidator}
           onSubmit={(values) => {
             console.log(values);
           }}

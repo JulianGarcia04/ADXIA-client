@@ -1,9 +1,10 @@
 import { config } from './config/index';
+import Http from '~/modules/package/http';
 
-const deleteClient = async (clientId, fetcher)=> {
+const deleteClient = async (clientId)=> {
 
 
-    fetcher.delete(`${config.CLIENT_SERVICE_URI}`)
+    Http.delete(`${config.CLIENT_SERVICE_URI}`)
   
 }
 

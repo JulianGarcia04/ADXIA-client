@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import Image from "next/image";
 import Link from "next/link";
 import DefaultLayout from "@/layout/DefaultLayout";
@@ -7,11 +8,27 @@ import FigureBackground from '@/components/FigureBackground/FigureBackground';
 import OrdersCard from '@/components/OrdersCard/OrdersCard';
 import Avatar from "@/assets/images/Avatar.svg";
 import Figure from '@/assets/images/GroupWhite.svg';
-import { Home, Plus, BarChart2 } from "react-feather";
-import styles from "./home.module.scss";
 import OptionsNavBar from "~/components/OptionsNavBar/OptionsNavBar";
+import styles from "./home.module.scss";
+
+
+export async function getServerSideProps(context){
+
+  
+
+
+  return {
+    props:{
+
+    }
+  }
+}
+
 
 function Index() {
+
+  const userAuth = useSelector(state=>state.employeeAuth.value)
+
   return (
     <DefaultLayout className={styles.layout}>
       {/* Header color blue where contain differents information of the user */}
@@ -24,7 +41,7 @@ function Index() {
         </div>
         <div className={styles.nameConatainer}>
             <h1>Bienvenido</h1>
-            <h5>Julián Martinez</h5>
+            <h5>{userAuth.name + ' ' + userAuth.lastname}</h5>
         </div>
       </header>
       {/* Options for access to orders and clients */}

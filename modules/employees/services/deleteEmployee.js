@@ -1,6 +1,6 @@
 import {config} from './config';
 
-const deleteEmployee = (fetcher)=> {
+const deleteEmployee = ()=> {
 
 }
 

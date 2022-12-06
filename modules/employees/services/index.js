@@ -1,7 +1,7 @@
-export {import as createEmployee} from './createEmployee';
-export {import as getEmployee} from './getEmployee';
-export {import as getEmployees} from './getEmployees';
-export {import as updateEmployee} from './updateEmployee';
-export {import as deleteEmployee} from './deleteEmployee';
-export {import as loginEmployee} from './loginEmployee';
-export {import as logoutEmployee} from './logoutEmployee';
+export {default as createEmployee} from './createEmployee';
+export {default as getEmployee} from './getEmployee';
+export {default as getEmployees} from './getEmployees';
+export {default as updateEmployee} from './updateEmployee';
+export {default as deleteEmployee} from './deleteEmployee';
+export {default as loginEmployee} from './loginEmployee';
+export {default as logoutEmployee} from './logoutEmployee';

@@ -6,7 +6,7 @@ import styles from "./edit.module.scss";
 import ButtonsNavBar from "~/components/ButtonsNavBar/ButtonsNavBar";
 import ImageField from "~/components/ImageField/ImageField";
 import TextField from "~/components/TextField/TextField";
-import CreateEdit from "~/validators/Client/Create-Edit";
+import {editValidator} from "~/modules/client/validators";
 
 function Id() {
   const idForm = useId();
@@ -22,7 +22,7 @@ function Id() {
           tel: "",
           adress: "",
         }}
-        validationSchema={CreateEdit}
+        validationSchema={editValidator}
         onSubmit={(values) => {
           console.log(values);
         }}
