@@ -20,7 +20,7 @@ export default function Index() {
   const onSubmitEvent = (values) => {
     const dataBody = adapterRequest(values);
     mutate(dataBody, {
-      onSuccess:()=>{
+      onSuccess:(data)=>{
         const { token } = adapterResponse(data);
         setCookie("auth", token, 1000 * 60 * 60 * 8);
         push("/home");

@@ -31,8 +31,6 @@ function Index({ employee }) {
     initialData: employee,
   });
   const dispath = useDispatch();
-
-  console.log(employee);
   useEffect(() => {
     dispath(setEmployeeAuth(employee));
   }, [dispath, employee]);
