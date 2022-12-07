@@ -2,14 +2,16 @@ import React from 'react';
 import PrincipalLayout from '~/layout/PrincipalLayout';
 import PersonCard from '~/components/PersonCard/PersonCard';
 import style from './styles.module.scss';
+import ClientCard from '~/components/ClientCard/ClientCard';
 
 function Index() {
   return (
     <PrincipalLayout title={'Selecciona un cliente'}>
       <div className={style.clientList}>
-        <PersonCard/>
-        <PersonCard/>
-        <PersonCard/>
+        <ClientCard />
+        <ClientCard />
+        <ClientCard />
+        <ClientCard />
       </div>
     </PrincipalLayout>
   )

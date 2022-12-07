@@ -38,6 +38,7 @@ function Index({ clients }) {
               img={e.urlImage}
               name={`${e.name} ${e.lastname}`}
               place={e.businessPlace}
+              options
               key={e.id}
             />
           );

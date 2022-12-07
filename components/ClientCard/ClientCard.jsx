@@ -1,7 +1,7 @@
 import React from "react";
 import View from "./View";
 
-function ClientCard({ idClient, img, name, place, isLoading }) {
+function ClientCard({ idClient, img, name, place, isLoading, options }) {
   return (
     <View
       idClient={idClient}
@@ -9,6 +9,7 @@ function ClientCard({ idClient, img, name, place, isLoading }) {
       name={name}
       place={place}
       isLoading={isLoading}
+      options={options}
     />
   );
 }
