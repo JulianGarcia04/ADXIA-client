@@ -1,1 +1,1 @@
-export {default as loginController} from './login';
+export {getEmployeAuthControllerHome} from './home';

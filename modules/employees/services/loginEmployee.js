@@ -1,13 +1,10 @@
 import {config} from './config';
 import Http from '~/modules/package/http';
 
-const loginEmployee = async (data)=> {
-    try {
-        const request = await Http.post(`${config.EMPLOYEE_SERVICE_URI}/employee/login`, data);
-        return request
-    } catch (error) {
-        console.log(error)
-    }
+const loginEmployee = async (dataBody)=> {
+    const {data} = await Http.post(`${config.EMPLOYEE_SERVICE_URI}/employee/login`, dataBody);
+    console.log(data)
+    return data
 }
 
 export default loginEmployee;

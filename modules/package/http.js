@@ -8,7 +8,7 @@ class Http {
             })
             return request;
         } catch (error) {
-            throw new Error(error);
+            throw error
         }
     }
 
@@ -19,7 +19,7 @@ class Http {
             })
             return request;
         } catch (error) {
-            throw new Error(error);
+            throw error
         }
     }
 
@@ -30,7 +30,7 @@ class Http {
             })
             return request;
         } catch (error) {
-            throw new Error(error);
+            throw error
         }
     }
 
@@ -41,7 +41,7 @@ class Http {
             })
             return request;
         } catch (error) {
-            throw new Error(error);
+            throw error
         }
     }
 }

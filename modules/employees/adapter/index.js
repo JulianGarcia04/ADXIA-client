@@ -1,2 +1,2 @@
 export {adapterRequest, adapterResponse} from './login';
-export {default as adapterUser} from './oneUser'
+export {default as adapterUser} from './oneEmployee'

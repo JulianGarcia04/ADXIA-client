@@ -1,10 +1,23 @@
 import React from "react";
+import {getEmployees} from '~/modules/employees/services';
 import NavBar from "~/components/NavBar/NavBar";
 import OptionsNavBar from "~/components/OptionsNavBar/OptionsNavBar";
 import SearchInput from "~/components/SearchInput/SearchInput";
 import PrincipalLayout from "~/layout/PrincipalLayout";
 import style from "./employees.module.scss";
 import EmployeeCard from "~/components/EmployeeCard/EmployeeCard";
+
+export async function getServerSideProps({req}){
+
+  const token = req.cookies.auth;
+  const data = getEmployees()
+
+  return {
+    prop:{
+
+    }
+  }
+}
 
 function Index() {
   return (

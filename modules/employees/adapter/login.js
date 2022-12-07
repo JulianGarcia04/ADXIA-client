@@ -7,8 +7,8 @@ export const adapterRequest = (data) => {
 
 export const adapterResponse = (data)=>{
   return {
-    employeeAuth: data.data.employee,
-    token: data.data.employeeToken
+    employeeAuth: data.employee,
+    token: data.employeeToken
   }
 }
 
