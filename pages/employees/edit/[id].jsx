@@ -6,7 +6,7 @@ import styles from "./edit.module.scss";
 import ButtonsNavBar from "~/components/ButtonsNavBar/ButtonsNavBar";
 import ImageField from "~/components/ImageField/ImageField";
 import TextField from "~/components/TextField/TextField";
-import createEdit from "~/validators/Employee/create-edit";
+import createEdit from "~/validators/Employee/Create-Edit";
 
 function Id() {
   const idForm = useId();
