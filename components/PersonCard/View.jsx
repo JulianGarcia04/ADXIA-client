@@ -27,7 +27,7 @@ function View({
         )}
       <Image
         src={
-          "https://scontent.fctg1-4.fna.fbcdn.net/v/t39.30808-6/275576245_368936285098451_4743975802562067660_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=_DlDHrxP7a0AX981eE3&_nc_ht=scontent.fctg1-4.fna&oh=00_AfCDdg56sBuCW11f_qHmGK2Qflt3dQ5IbSvysXmWoKuRvg&oe=6379AA04"
+          "https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/1629254a9dfa66d90aa6ebda8c2d6a5f~c5_100x100.jpeg?x-expires=1670691600&x-signature=%2BDXCJKsp3dK4ZX%2BG4A9964%2BCub8%3D"
         }
         alt="Image profile"
         width={50}

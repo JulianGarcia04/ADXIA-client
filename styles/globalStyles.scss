@@ -11,6 +11,16 @@
     padding: 0;
 }
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button{
+    -webkit-appearance: none;
+    overflow-y: hidden;
+}
+
+input[type=number]{
+    -moz-appearance: textfield;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     font-style: normal;

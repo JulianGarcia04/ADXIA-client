@@ -5,6 +5,7 @@ import ModalOptions from "../ModalOptions/ModalOptions";
 import PersonCard from "../PersonCard/PersonCard";
 import { MoreVertical, Edit3, Trash } from "react-feather";
 import style from "./styles.module.scss";
+import OptionsModalCard from "../OptionsModalCard/OptionsModalCard";
 
 function View({ moreOption, stateModal }) {
   return (
@@ -13,14 +14,14 @@ function View({ moreOption, stateModal }) {
         document &&
         ReactDOM.createPortal(
           <ModalOptions changeStateModal={moreOption}>
-            <div>
-              <Edit3 width={27} height={27} />
-              <span>Editar pedido</span>
-            </div>
-            <div>
-              <Trash width={27} height={27} />
-              <span>Eliminar pedido</span>
-            </div>
+            <OptionsModalCard
+              message={"Editar producto"}
+              icon={<Edit3 width={27} height={27} />}
+            />
+            <OptionsModalCard
+              message={"Eliminar producto"}
+              icon={<Trash width={27} height={27} />}
+            />
           </ModalOptions>,
           document.getElementById("modalContainer")
         )}

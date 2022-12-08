@@ -1,4 +1,5 @@
 import React from "react";
+import { useRouter } from "next/router";
 import DefaultLayout from "@/layout/DefaultLayout";
 import TextField from "@/components/TextField/TextField";
 import FigureBackground from "@/components/FigureBackground/FigureBackground";
@@ -10,6 +11,9 @@ import style from "./login.module.scss";
 
 
 export default function Index() {
+
+  const router = useRouter();
+ 
   return (
     <DefaultLayout className={style.fatherContainer}>
       <FigureBackground src={Figure} top={35} right={0}/>
@@ -20,14 +24,12 @@ export default function Index() {
         <Formik
           initialValues={{ nroDoc: "", password: "" }}
           validationSchema={UserModel}
-          onSubmit={(values, { setSubmitting }) => {
+          onSubmit={(values) => {
             console.log(values);
-            setSubmitting(false);
+            router.push('/home');
           }}
         >
-          {(
-            isSubmitting
-          ) => (
+          {() => (
             <Form className={style.form}>
               <TextField
                 type="number"
@@ -39,7 +41,7 @@ export default function Index() {
                 name="password"
                 title="Codigo de acceso"
               />
-              <Button title={'Ingresar'} disabled={isSubmitting}/>
+              <Button title={'Ingresar'}/>
             </Form>
           )}
         </Formik>

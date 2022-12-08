@@ -21,7 +21,7 @@ function View({
           ReactDOM.createPortal(
             <ModalOptions changeStateModal={methodChangeStateModal}>
               <OptionsModalCard
-                href={`/product/edit/${idProduct}`}
+                href={`/products/edit/${idProduct}`}
                 icon={<Edit3 width={27} height={27} />}
                 message="Editar producto"
               />
@@ -49,14 +49,11 @@ function View({
       </span>
       <section className={style.presentationInfo}>
         <span>x250</span>
-        <span>x350</span>
-        <span>x750</span>
       </section>
       <footer className={style.priceInfo}>
         <h1>$24.000</h1>
         <div>
           <span>12 unidades</span>
-          <ChevronDown color="#000" width={20} />
         </div>
       </footer>
     </div>
