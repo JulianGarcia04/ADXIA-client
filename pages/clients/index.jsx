@@ -16,10 +16,10 @@ function Index() {
       header={<SearchInput placeholder={"Buscar pedido"} />}
     >
       <div className={style.containerClientList}>
-        <ClientCard idClient={1}/>
-        <ClientCard idClient={2}/>
-        <ClientCard idClient={3}/>
-        <ClientCard idClient={4}/>
+        <ClientCard idClient={1} options/>
+        <ClientCard idClient={2} options/>
+        <ClientCard idClient={3} options/>
+        <ClientCard idClient={4} options/>
       </div>
       {/*Navbar*/}
       <NavBar>
