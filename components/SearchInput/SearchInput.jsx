@@ -2,19 +2,17 @@ import React from 'react';
 import { Formik } from 'formik';
 import View from './View';
 
-function SearchInput({placeholder}) {
+function SearchInput({placeholder, onSearchValue}) {  
   return (
     <Formik
       initialValues={{
         paramSearch: ''
       }}
-      onSubmit={(value)=>{
-        console.log(value);
-      }}
+      onSubmit={()=> 1}
     >
-      {({handleSubmit})=>{
+      {()=>{
         return(
-          <View placeholder={placeholder} submit={handleSubmit}/>
+          <View placeholder={placeholder} onSearchValue={onSearchValue}/>
         )
       }}
     </Formik>

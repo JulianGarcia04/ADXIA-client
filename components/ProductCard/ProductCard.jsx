@@ -2,8 +2,7 @@ import React from 'react';
 import View from './View';
 import useModal from '~/hooks/useModal';
 
-function ProductCard({idProduct, options, border}) {
-
+function ProductCard({productData, options, border, onClick}) {
   const {isOpen, showModal} = useModal();
 
   const styles = {
@@ -12,7 +11,13 @@ function ProductCard({idProduct, options, border}) {
     padding: '10px 0px'
   }
   return (
-    <View idProduct={idProduct} stateModal={isOpen} methodChangeStateModal={showModal} options={options} styles={border?styles:{}}/>
+    <View 
+      onClick={onClick}
+      productData={productData} 
+      stateModal={isOpen} 
+      methodChangeStateModal={showModal} 
+      options={options} 
+      styles={border?styles:{}}/>
   )
 }
 

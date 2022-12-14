@@ -1,18 +1,38 @@
 import React from "react";
-import { useMutation } from "react-query";
-import DefaultLayout from "@/layout/DefaultLayout";
-import TextField from "@/components/TextField/TextField";
-import FigureBackground from "@/components/FigureBackground/FigureBackground";
-import Figure from '@/assets/images/Group.svg'
 import { Formik, Form } from "formik";
+import style from "./login.module.scss";
+import { useRouter } from "next/router";
+import Figure from '@/assets/images/Group.svg'
 import Login from '~/validators/Employee/Login';
 import Button from "~/components/Button/Button";
-import style from "./login.module.scss";
-
+import DefaultLayout from "@/layout/DefaultLayout";
+import Loading from "~/components/Loading/Loading";
+import TextField from "@/components/TextField/TextField";
+import FigureBackground from "@/components/FigureBackground/FigureBackground";
+import { getEmployeeFromRequest } from "~/helpers/getEmployeeFromRequest";
+import { useIsMutating, useMutation } from "react-query";
+import { agent } from "~/agent";
 
 export default function Index() {
+  const router = useRouter();
+
+  React.useEffect(()=> {
+    router.prefetch("/home");
+  }, []);
+
+  const loginEmployeeMutation = useMutation({
+    mutationKey: ["loginEmployee"],
+    mutationFn: agent.Employee.login,
+    onSuccess: ()=> {
+      router.push("/home");
+    }
+  })
+
   return (
     <DefaultLayout className={style.fatherContainer}>
+      <Loading 
+        label="Verificando datos.." 
+        visible={loginEmployeeMutation.isLoading ? true : false}/>
       <FigureBackground src={Figure} top={35} right={0}/>
       <FigureBackground src={Figure} bottom={25} left={0}/>
       <div className={style.formContainer}>
@@ -21,24 +41,31 @@ export default function Index() {
         <Formik
           initialValues={{ nroDoc: "", password: "" }}
           validationSchema={Login}
-          onSubmit={(values, { setSubmitting }) => {
-            console.log(values);
+          onSubmit={(values) => {
+            if(!loginEmployeeMutation.isLoading) {
+              loginEmployeeMutation.mutate({
+                nroDocument: values.nroDoc,
+                accessCode: values.password
+              })
+            }
           }}
         >
           {(
             isSubmitting
           ) => (
             <Form className={style.form}>
-              <TextField
-                type="number"
-                name="nroDoc"
-                title="Número de identidad"
-              />
-              <TextField
-                type="password"
-                name="password"
-                title="Codigo de acceso"
-              />
+              <div className={style.textFields}>
+                <TextField
+                  type="number"
+                  name="nroDoc"
+                  title="Número de identidad"
+                />
+                <TextField
+                  type="password"
+                  name="password"
+                  title="Codigo de acceso"
+                />
+              </div>
               <Button title={'Ingresar'} type={'submit'}/>
             </Form>
           )}
@@ -46,4 +73,14 @@ export default function Index() {
       </div>
     </DefaultLayout>
   );
+}
+
+export const getServerSideProps = async ({req})=> {
+  const employee = await getEmployeeFromRequest(req);
+  
+  if(employee) {
+    return {props: {}, redirect: {destination: "/home"}}
+  }
+
+  return {props: {}};
 }

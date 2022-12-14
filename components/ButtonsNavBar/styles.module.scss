@@ -1,5 +1,6 @@
 .buttonsContainers{
     display: flex;
+    height: 48px;
     align-items: center;
     justify-content: flex-end;
     width: 91.3333333%;
@@ -7,14 +8,15 @@
     button{
         padding: 0px 20px;
         border: none;
+        font-size: 16px;
         border-radius: 5px;
         height: 100%;
         width: 45%;
+        font-weight: 600;
     }
 }
 
 .first{
-    margin-right: 15px;
     background-color: #F1F1FF;
     color: var(--primary-background);
 }
@@ -22,4 +24,13 @@
 .second{
     background-color: var(--primary-background);
     color: #fff;
+}
+
+.disabled {
+    .second {
+        color: #999;
+        pointer-events: none;
+        background-color: #fff;
+        border: 2px #e5e5ee solid;
+    }
 }

@@ -11,6 +11,11 @@
         font-family: 'Poppins', sans-serif;
         border: none;
         border-radius: 5px;
-        background-color: var(--secondary-background);
+        background-color: #fff;
+        border: 2px #e5e5ee solid;
+    }
+
+    .textarea:hover {
+        border: 2px var(--primary-background) solid;
     }
 }

@@ -1,17 +1,35 @@
-import { Provider } from "react-redux";
-import { QueryClientProvider } from "react-query";
-import {ReactQueryDevtools} from "react-query/devtools";
-import queryClient from "~/query/queryClient";
-import store from "../redux/store";
 import "../styles/globalStyles.scss";
+import "@fontsource/poppins/300.css";
+import "@fontsource/poppins/400.css";
+import "@fontsource/poppins/500.css";
+import "@fontsource/poppins/600.css";
+import "@fontsource/poppins/700.css";
+import "@fontsource/poppins/800.css";
+import "@fontsource/poppins/900.css";
+import 'react-loading-skeleton/dist/skeleton.css'
+
+import { QueryClientProvider } from "react-query";
+import queryClient from "~/query/queryClient";
+import { SkeletonTheme } from "react-loading-skeleton";
+import { OrderProvider } from "~/contexts/orderContext";
+import { SearchProvider } from "~/contexts/searchContext";
+import { EmployeeProvider } from "~/contexts/employeeContext";
 
 const MyApp = ({ Component, pageProps }) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <Provider store={store}>
-        <Component {...pageProps} />
-        <ReactQueryDevtools/>
-      </Provider>
+      <SkeletonTheme baseColor="#e5e5ee" highlightColor="#fff">
+        <SearchProvider>
+          <OrderProvider>
+            <EmployeeProvider>
+              <img src="/image/background1.svg" alt="background" className="background" />
+              <div className="app">
+                <Component {...pageProps} />
+              </div>
+            </EmployeeProvider>
+          </OrderProvider>
+        </SearchProvider>
+      </SkeletonTheme>
     </QueryClientProvider>
   );
 };

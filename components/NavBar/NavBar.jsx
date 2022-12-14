@@ -1,9 +1,9 @@
 import React from 'react'
 import View from './View'
 
-function NavBar({children}) {
+function NavBar({children, acomodate}) {
   return (
-    <View>
+    <View acomodate={acomodate}>
         {children}
     </View>
   )

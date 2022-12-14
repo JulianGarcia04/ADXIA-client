@@ -1,14 +1,13 @@
 import React from "react";
-import Image from "next/image";
 import { Plus, Camera } from "react-feather";
 import styles from "./styles.module.scss";
 
-function View({ onChange, imageLocal, alt, src }) {
+function View({ onChange, alt, src }) {
   return (
     <label className={styles.inputContainer}>
-      {imageLocal ? (
-        <Image
-          src={imageLocal}
+      {src ? (
+        <img
+          src={src}
           alt={alt}
           width={120}
           height={140}
@@ -20,7 +19,7 @@ function View({ onChange, imageLocal, alt, src }) {
       <input
         type={"file"}
         name="imageInput"
-        accept=".jpg, .png, .webp, .svg"
+        accept=".jpg, .jpeg, .png, .svg"
         onChange={onChange}
       />
       <div className={styles.iconContainer}>

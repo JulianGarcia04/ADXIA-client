@@ -1,9 +1,20 @@
 import React from 'react';
 import View from './View';
 
-function EmployeeCard({idEmployee, img, name, position}) {
+function EmployeeCard({employeeData, options}) {
+  const employeeTypes = {
+    ["VENDOR"]: "Vendedor",
+    ["ADMIN"]: "Administrador",
+    ["DELIVERER"]: "Entregador"
+  }
+
+  employeeData = {
+    ...employeeData,
+    type: employeeTypes[employeeData.type]
+  }
+
   return (
-    <View idEmployee={idEmployee} img={img} name={name} position={position}/>
+    <View employeeData={employeeData} options={options}/>
   )
 }
 

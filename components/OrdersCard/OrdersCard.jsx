@@ -2,10 +2,10 @@ import React from 'react'
 import useModal from '~/hooks/useModal'
 import View from './View'
 
-function OrdersCard() {
+function OrdersCard({ orderData }) {
   const {isOpen, showModal} = useModal();
   return (
-    <View moreOption={showModal} stateModal={isOpen}/>
+    <View orderData={orderData} moreOption={showModal} stateModal={isOpen}/>
   )
 }
 

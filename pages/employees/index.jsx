@@ -4,22 +4,40 @@ import OptionsNavBar from "~/components/OptionsNavBar/OptionsNavBar";
 import SearchInput from "~/components/SearchInput/SearchInput";
 import PrincipalLayout from "~/layout/PrincipalLayout";
 import style from "./employees.module.scss";
-import EmployeeCard from "~/components/EmployeeCard/EmployeeCard";
+import { Employees } from "~/components/Employees/Employees";
+import { useIsFetching, useQueryClient } from "react-query";
+import { EmployeesSkeleton } from "~/components/EmployeesSkeleton/EmployeesSkeleton";
+import { useSearch } from "~/contexts/searchContext";
+import queryClient from "~/query/queryClient";
 
 function Index() {
+  const isFetchingEmployees = useIsFetching(["employees"]);
+
+  const queryClient = useQueryClient();
+
+  const { resetSearch, setSearchValue } = useSearch();
+
+  React.useEffect(()=> {
+    resetSearch();
+
+    queryClient.invalidateQueries("employees");
+  }, []);
+
   return (
     <PrincipalLayout
       title={"Lista de empleados"}
       color={"#ffff"}
       className={style.searchHeader}
-      header={<SearchInput placeholder={"Buscar empleado"} />}
+      header={
+        <SearchInput 
+          placeholder={"Buscar empleado"} 
+          onSearchValue={(searchValue)=> {
+            setSearchValue(searchValue);
+            queryClient.invalidateQueries("employees");
+          }}
+      />}
     >
-      <div className={style.containerEmployeesList}>
-        <EmployeeCard idEmployee={1}/>
-        <EmployeeCard idEmployee={2}/>
-        <EmployeeCard idEmployee={3}/>
-        <EmployeeCard idEmployee={4}/>
-      </div>
+      {isFetchingEmployees ? <EmployeesSkeleton/> : <Employees/>}
       <NavBar>
         <OptionsNavBar linkAdd={"/employees/add"} />
       </NavBar>

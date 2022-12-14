@@ -1,14 +1,12 @@
 import React from "react";
 import View from "./View";
 
-function ClientCard({ idClient, img, name, place, isLoading }) {
+function ClientCard({ clientData, options, onClick }) {
   return (
     <View
-      idClient={idClient}
-      img={img}
-      name={name}
-      place={place}
-      isLoading={isLoading}
+      clientData={clientData}
+      options={options}
+      onClick={onClick}
     />
   );
 }

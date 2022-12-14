@@ -5,15 +5,22 @@
     flex-direction: column;
     margin: 5px;
     width: 100%;
+
+    label {
+        font-size: 14px;
+        font-weight: 600;
+    }
 }
 
 .input{
-    height: 50px;
-    border: 1px solid var(--another-color);
+    height: 48px;
+    box-sizing: border-box;
+    border: 2px solid var(--another-color);
     border-radius: 5px;
     background-color: var(--secondary-background);
     font-size: 16px;
     padding: 0px 12px;
+    background-color: #fff;
 }
 
 .input:focus{

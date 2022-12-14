@@ -1,25 +1,20 @@
 import React from "react";
-import { useRouter } from "next/router";
 import View from "./View";
+import { useRouter } from "next/router";
 
-function ButtonsNavBar({ title, height, onClick, form, type }) {
+function ButtonsNavBar({ title, height, onClick, onCancel, form, type, disabled }) {
   const router = useRouter();
 
-  const styles = {
-    height,
-  };
-
-  const onCancel = () => {
-    router.back();
-  };
   return (
     <View
       title={title}
-      styles={styles}
-      onCancel={onCancel}
+      onCancel={()=> {
+        onCancel ? onCancel() : router.back()
+      }}
       onClick={onClick}
       form={form}
       type={type}
+      disabled={disabled}
     />
   );
 }

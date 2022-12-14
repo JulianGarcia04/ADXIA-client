@@ -1,26 +1,26 @@
 import React from "react";
-import { useQuery } from "react-query";
-import {getClients} from '~/controllers/clients/index';
+import { useIsFetching, useQueryClient } from "react-query";
 import PrincipalLayout from "~/layout/PrincipalLayout";
 import NavBar from "~/components/NavBar/NavBar";
 import SearchInput from "~/components/SearchInput/SearchInput";
 import OptionsNavBar from "~/components/OptionsNavBar/OptionsNavBar";
-import ClientCard from "~/components/ClientCard/ClientCard";
 import style from "./clients.module.scss";
+import { Clients } from "~/components/Clients/Clients";
+import { ClientsSkeleton } from "~/components/ClientsSkeleton/ClientsSkeleton";
+import { useSearch } from "~/contexts/searchContext";
 
-export async function getServerSideProps(context){
+function Index() {
+  const isFetchingClients = useIsFetching(["clients"]);
 
-  return{
-    props:{
+  const queryClient = useQueryClient();
 
-    }
-  }
-}
+  const { resetSearch, setSearchValue } = useSearch();
 
-function Index({ clients }) {
-  const { data, isLoading, error } = useQuery("clients", {
-    initialData: clients,
-  });
+  React.useEffect(()=> {
+    resetSearch();
+
+    queryClient.invalidateQueries("clients");
+  }, []);
 
   return (
     //header
@@ -28,22 +28,16 @@ function Index({ clients }) {
       title={"Lista de clientes"}
       className={style.searchHeader}
       color={"#ffff"}
-      header={<SearchInput placeholder={"Buscar pedido"} />}
+      header={
+        <SearchInput 
+          placeholder={"Buscar pedido"} 
+          onSearchValue={(searchValue)=> {
+            setSearchValue(searchValue);
+            queryClient.invalidateQueries("clients");
+          }}/>
+      }
     >
-      <div className={style.containerClientList}>
-        {data.map((e) => {
-          return (
-            <ClientCard
-              idClient={e.id}
-              img={e.urlImage}
-              name={`${e.name} ${e.lastname}`}
-              place={e.businessPlace}
-              key={e.id}
-            />
-          );
-        })}
-      </div>
-      {/*Navbar*/}
+      {isFetchingClients ? <ClientsSkeleton/> : <Clients/>}  
       <NavBar>
         <OptionsNavBar linkAdd={"/clients/add"} />
       </NavBar>

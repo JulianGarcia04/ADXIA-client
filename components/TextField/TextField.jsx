@@ -1,7 +1,7 @@
 import React, { useId } from "react";
 import View from "./View";
 
-function TextField({ type, name, title, disabled, readOnly }) {
+function TextField({ type, name, title, disabled, readOnly, defaultValue, selectables }) {
   const id = useId();
   return (
     <View
@@ -11,6 +11,8 @@ function TextField({ type, name, title, disabled, readOnly }) {
       id={`${id}-${name}`}
       disabled={disabled}
       readOnly={readOnly}
+      defaultValue={defaultValue}
+      selectables={selectables}
     />
   );
 }

@@ -2,23 +2,38 @@ import React from "react";
 import PersonCard from "../PersonCard/PersonCard";
 import OptionsModalCard from "../OptionsModalCard/OptionsModalCard";
 import { Shield, Edit3, Trash } from "react-feather";
+import { useMutation, useQueryClient } from "react-query";
+import { agent } from "~/agent";
 
-function View({idEmployee, img, name, position}) {
+function View({employeeData, options}) {
+  const { id, imageURL, name, type,  } = employeeData;
+
+  const queryClient = useQueryClient();
+
+  const deleteEmployeeMutation = useMutation({
+    mutationKey: ["deleteEmployee"],
+    mutationFn: agent.Employee.delete,
+    onSuccess: ()=> {
+      queryClient.invalidateQueries("employees");
+    }
+  });
+
   return (
-    <PersonCard img={img} title={name} subtitle={position} options>
+    <PersonCard personData={{
+      imageURL: imageURL,
+      name: name,
+      surname: employeeData.surname,
+      info: type
+    }} options={options}>
       <OptionsModalCard
-        href={`/employees/access/${idEmployee}`}
-        icon={<Shield width={27} height={27} />}
-        message="Credenciales de acceso"
-      />
-      <OptionsModalCard
-        href={`/employees/edit/${idEmployee}`}
+        href={`/employees/edit/${id}`}
         icon={<Edit3 width={27} height={27} />}
         message="Editar empleado"
       />
       <OptionsModalCard
         icon={<Trash width={27} height={27} />}
         message="Eliminar empleado"
+        onClick={()=> deleteEmployeeMutation.mutate(employeeData)}
       />
     </PersonCard>
   );
