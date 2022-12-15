@@ -14,9 +14,13 @@ import { EmployeeProvider, useEmployee } from "~/contexts/employeeContext";
 import { DialogModal } from "~/components/DialogModal/DialogModal";
 import { HomeNavBar } from "~/components/HomeNavBar/HomeNavBar";
 import { downloadFile } from "~/helpers/downloadFile";
+import { agent } from "~/agent";
+import { useRouter } from "next/router";
 
 function Index({ employee }) {
   const { resetState } = useOrder();
+
+  const router = useRouter();
   
   const isFetchingOrders = useIsFetching(["orders"]);
 
@@ -33,6 +37,12 @@ function Index({ employee }) {
             <div className={styles.actions}>
               <img src={employee.imageURL} alt="Perfil Image" className={styles.image}/>
               <div className={styles.right}>
+                <button className={styles.icon_button} onClick={async ()=> {
+                  await agent.Employee.logout();
+                  router.push("/login");
+                }}>
+                  <img src="/image/exit1.svg" alt="Icon button"/>
+                </button>
                 <button className={styles.icon_button} onClick={()=> downloadFile("/manual/Manual de usuario.pdf")}>
                   <img src="/image/file1.svg" alt="Icon button"/>
                 </button>

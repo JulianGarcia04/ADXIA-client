@@ -5,7 +5,7 @@ const axios = _axios.create({
   withCredentials: true
 });
 
-const SERVER_BASE_URI = "http://localhost:4000/api";
+const SERVER_BASE_URI = process.env.NEXT_PUBLIC_SERVER_BASE_URI;
 
 const http = {
   get: async (url, config)=> {
@@ -83,6 +83,9 @@ const Employee = {
         accessCode: data.accessCode
       }
     )).data.employee;
+  },
+  logout: async ()=> {
+    return await http.post("/employee/logout");
   },
   // The cookie only is necessary in side server
   current: async (cookie)=> {
@@ -222,6 +225,8 @@ const Order = {
     return order;
   },
   update: async (order)=> {
+
+    console.log(order);
 
     await delay(1000);
 
