@@ -53,9 +53,7 @@ export default function Index() {
             }
           }}
         >
-          {(
-            isSubmitting
-          ) => (
+          {() => (
             <Form className={style.form}>
               <div className={style.textFields}>
                 <TextField

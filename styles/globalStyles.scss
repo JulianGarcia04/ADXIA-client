@@ -15,6 +15,16 @@ img {
     object-fit: cover;
 }
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button{
+    -webkit-appearance: none;
+    overflow-y: hidden;
+}
+
+input[type=number]{
+    -moz-appearance: textfield;
+}
+
 body {
     width: 100vw;
     display: flex;
