@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import React from "react";
 import { useMutation, useQueryClient } from "react-query";
 import PersonCard from "../PersonCard/PersonCard";

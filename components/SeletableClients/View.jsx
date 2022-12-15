@@ -39,25 +39,10 @@ function View({clients, onSelectClient, inEdit}) {
           <div 
             key={client.id}
             className={clsx({
-            [styles.clientCard]: true,
-            [styles.disabled]: !!client.order && !(client.id === selectedClient.id)
+            [styles.clientCard]: true
           })}
             onClick={()=> {
-              const clientHasOrder = !!client.order;
-
-              if(clientHasOrder) {
-                if(client.id === selectedClient.id) {
-                  onSelectClient(client);
-
-                }else {
-                  setOrder(client.order);
-
-                  setOpenedError(true);
-                }
-
-              }else {
-                onSelectClient(client);
-              }
+              onSelectClient(client);
             }}>          
             <ClientCard clientData={client}/>
           </div>
@@ -68,24 +53,13 @@ function View({clients, onSelectClient, inEdit}) {
             key={client.id}
             className={clsx({
             [styles.clientCard]: true,
-            [styles.disabled]: !!client.order
           })}
             onClick={()=> {
-              const clientHasOrder = !!client.order;
-
-              if(clientHasOrder) {
-                setOrder(client.order);
-
-                setOpenedError(true);
-
-              }else {
-                onSelectClient(client);
-              }
+              onSelectClient(client);
             }}>          
             <ClientCard clientData={client}/>
           </div>
         )
-        
         return (
           <div style={{width: "100%"}} key={client.id}>
             {inEdit ? <EditClientCard/> : <AddClientCard/>}

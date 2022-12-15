@@ -11,6 +11,9 @@
     font-family: "Poppins";
 }
 
+img {
+    object-fit: cover;
+}
 
 body {
     width: 100vw;
@@ -47,6 +50,7 @@ body {
     height: 160vh;
     z-index: -1000;
     position: fixed;
+    object-fit: contain;
 }
 
 .portal {

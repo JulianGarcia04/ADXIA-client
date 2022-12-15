@@ -85,6 +85,8 @@ const Employee = {
     )).data.employee;
   },
   logout: async ()=> {
+    await delay(1000);
+
     return await http.post("/employee/logout");
   },
   // The cookie only is necessary in side server
@@ -178,10 +180,18 @@ const Order = {
 
     return populatedOrder;
   },
-  getList: async (skip, limit, searchValue)=> {
+  getList: async (skip, limit, searchValue, deliveryState)=> {
     await delay(1000);
+
+    const arrQuery = [];
+
+    if(skip && limit) arrQuery.push(`skip=${skip}&&limit=${limit}`);
+    if(searchValue) arrQuery.push(`search=${searchValue}`);
+    if(deliveryState) arrQuery.push(`deliveryState=${deliveryState}`);
+
+    const query = arrQuery.join("&&");
  
-    const orders = (await http.get(`/orders?skip=${skip}&&limit=${limit}&&search=${searchValue}`)).data.orders;
+    const orders = (await http.get(`/orders?${query}`)).data.orders;
 
     const populatedOrders = [];
 
@@ -225,8 +235,6 @@ const Order = {
     return order;
   },
   update: async (order)=> {
-
-    console.log(order);
 
     await delay(1000);
 

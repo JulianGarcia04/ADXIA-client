@@ -8,11 +8,9 @@ import ImageField from "~/components/ImageField/ImageField";
 import TextField from "~/components/TextField/TextField";
 import Edit from "~/validators/Employee/Edit";
 import { useState } from "react";
-import { useMutation, useQueryClient, useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { agent } from "~/agent";
-import Loading from "~/components/Loading/Loading";
 import { ErrorModal } from "~/components/ErrorModal/ErrorModal";
-import { useRouter } from "next/router";
 import { FormSkeleton } from "~/components/FormSkeleton/FormSkeleton";
 import { requiredEmployee } from "~/helpers/requiredEmployee";
 import { EMPLOYEE_TYPE_ADMIN, EMPLOYEE_TYPE_VENDOR } from "~/constants/employeeTypes";
@@ -20,44 +18,14 @@ import { EMPLOYEE_TYPE_ADMIN, EMPLOYEE_TYPE_VENDOR } from "~/constants/employeeT
 function Index({employeeId}) {
   const idForm = useId();
 
-  const router = useRouter();
-
   const { data: employee, isLoading } = useQuery({
     queryKey: ["employee"],
-    queryFn: ()=> agent.Employee.getById(employeeId)
+    queryFn: ()=> agent.Employee.getById(employeeId)  
   });
 
-  const [changedForm, setChangedForm] = useState(false);
   const [image, setImage] = useState(null);
   const [error, setError] = useState(null);
   const [openedModalError, setOpenedModalError] = useState(false);
-
-  const queryClient = useQueryClient();
-
-  const updateEmployeeMutation = useMutation({
-    mutationKey: ["updateEmployee"],
-    mutationFn: async (data)=> {
-      let imageURL = employee.imageURL;
-
-      if(image) {
-        imageURL = await agent.Image.upload(image).url;
-      }
-
-      await agent.Employee.update({...employee, ...data, imageURL});
-    },
-    onSuccess: ()=> {
-      queryClient.invalidateQueries("employees");
-
-      router.back();
-    },
-    onError: (requestError)=> {
-      const error = requestError.response.data;
-
-      setError(error);
-      
-      setOpenedModalError(true);
-    }
-  })
   
   return (
     <PrincipalLayout title={"Editar empleado"}>
@@ -66,9 +34,6 @@ function Index({employeeId}) {
         message={error ? error.message : null} 
         visible={openedModalError} 
         onClose={()=> setOpenedModalError(false)}/>
-      <Loading 
-        label="Guardando cambios" 
-        visible={updateEmployeeMutation.isLoading}/>
       {isLoading ? 
       <FormSkeleton/> :
         <Formik
@@ -83,28 +48,9 @@ function Index({employeeId}) {
             accessCode: "********"
           }}
           validationSchema={Edit}
-          onSubmit={(values) => {
-            if(!updateEmployeeMutation.isLoading) {
-              updateEmployeeMutation.mutate({
-                name: values.name,
-                surname: values.surname,
-                email: values.email,
-                nroDocument: values.nroDocument,
-                birthDate: values.birthDate,
-                imageURL: values.imageURL,
-                type: values.type,
-                accessCode: values.accessCode,
-                phone: values.phone
-              })
-            }
-          }}
+          onSubmit={(values) => {}}
         >
-          {({errors, values, initialValues, touched})=> {
-
-            React.useEffect(()=> {
-              const equals = JSON.stringify(values) === JSON.stringify(initialValues);
-              setChangedForm(equals ? false : true);
-            }, [values]);
+          {()=> {
 
             return (
               <Form id={`${idForm}-createEmployee`} className={styles.form} 

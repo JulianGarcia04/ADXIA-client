@@ -24,7 +24,7 @@ function Index({employeeId}) {
 
   const { data: employee, isLoading } = useQuery({
     queryKey: ["employee"],
-    queryFn: ()=> agent.Employee.getById(employeeId)
+    queryFn: ()=> agent.Employee.getById(employeeId),
   });
 
   const [changedForm, setChangedForm] = useState(false);

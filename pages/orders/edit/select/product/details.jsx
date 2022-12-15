@@ -20,10 +20,10 @@ function Id() {
 
   const { selectedProduct, order, isAddedProduct, setSelectedProduct, addProduct, updateProduct } = useOrder();
 
-  console.log(selectedProduct);
-
   return (
     <PrincipalLayout title={"Producto"}>
+      {!(selectedProduct) ? 
+      <FormSkeleton/> :
       <div className={style.formContainer}>
         <div className={style.productCard}>
           <ProductCard productData={{
@@ -102,8 +102,7 @@ function Id() {
             </Form>
           )}
         </Formik>      
-      </div>
-     
+      </div>}
     </PrincipalLayout>
   );
 }

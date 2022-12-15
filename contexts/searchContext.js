@@ -2,14 +2,17 @@ import React from "react";
 
 const SearchContext = React.createContext({
   searchValue: "",
+  deliveryState: "",
   resetSearch: ()=> 1,
   setSearchValue: ()=> 1,
+  setDeliveryState: ()=> 1,
   getSearchValue: async ()=> 1
 });
 
 export const SearchProvider = ({children})=> {
   const initialState = {
-    searchValue: ""
+    searchValue: "",
+    deliveryState: "DELIVERED"
   }
 
   const [state, setState] = React.useState(initialState);
@@ -22,6 +25,10 @@ export const SearchProvider = ({children})=> {
     setState((prevState)=> ({...prevState, searchValue}))
   }
 
+  const setDeliveryState = (deliveryState)=> {
+    setState((prevState)=> ({...prevState, deliveryState}))
+  }
+
   const getSearchValue = ()=> {
     return new Promise((resolve)=> {
       setState((state)=> {
@@ -32,13 +39,27 @@ export const SearchProvider = ({children})=> {
       })
     })
   }
+
+  const getDeliveryState = ()=> {
+    return new Promise((resolve)=> {
+      setState((state)=> {
+
+        resolve(state.deliveryState);
+
+        return state;
+      })
+    })
+  }
+  
   
   return (
     <SearchContext.Provider value={{
       ...state,
       resetSearch,
       setSearchValue,
-      getSearchValue
+      getSearchValue,
+      setDeliveryState,
+      getDeliveryState
     }}>
       {children}
     </SearchContext.Provider>

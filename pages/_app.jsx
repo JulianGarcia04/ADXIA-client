@@ -8,14 +8,22 @@ import "@fontsource/poppins/800.css";
 import "@fontsource/poppins/900.css";
 import 'react-loading-skeleton/dist/skeleton.css'
 
-import { QueryClientProvider } from "react-query";
-import queryClient from "~/query/queryClient";
+import { QueryClient, QueryClientProvider } from "react-query";
 import { SkeletonTheme } from "react-loading-skeleton";
 import { OrderProvider } from "~/contexts/orderContext";
 import { SearchProvider } from "~/contexts/searchContext";
 import { EmployeeProvider } from "~/contexts/employeeContext";
 
 const MyApp = ({ Component, pageProps }) => {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: Infinity,
+        refetchOnWindowFocus: false
+      }
+    }
+  });
+
   return (
     <QueryClientProvider client={queryClient}>
       <SkeletonTheme baseColor="#e5e5ee" highlightColor="#fff">

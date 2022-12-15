@@ -36,6 +36,7 @@ function Id({employee, orderId}) {
       await agent.Order.update({id: order.id, ...values});
     },
     onSuccess: ()=> {
+      queryClient.invalidateQueries("order");
       queryClient.invalidateQueries("orders");
       
       router.push("/orders");
@@ -53,6 +54,9 @@ function Id({employee, orderId}) {
     queryKey: ["order"],
     queryFn: ()=> agent.Order.getById(orderId)
   });
+
+
+  console.log(order);
 
   return (
     <>
@@ -72,8 +76,8 @@ function Id({employee, orderId}) {
           <Formik
           enableReinitialize
           initialValues={{
-            deliveryState: "NO_DELIVERED",
-            deliveredAt: deliveredAt
+            deliveryState: order.deliveryState,
+            deliveredAt: order.deliveredAt || deliveredAt
           }}
           onSubmit={(values) => {
             if(!updateOrderMutation.isLoading) {
