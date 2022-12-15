@@ -1,7 +1,8 @@
 .fatherContainer {
+    display: flex;
+    min-height: 100vh;
     position: relative;
     justify-content: center;
-    background-color: white;
 }
 
 .formContainer {
@@ -9,6 +10,7 @@
     z-index: 6;
 
     h6{
+        font-size: 14px;
         color: #112255;
     }
 
@@ -31,4 +33,18 @@
         margin-bottom: 24px;
         flex-direction: column;
     }
+}
+
+.figure1 {
+    top: 0px;
+    right: 0px;
+    position: absolute;
+    visibility: visible;
+}
+
+.figure2 {
+    left: -50px;
+    bottom: -80px;
+    position: absolute;
+    visibility: visible;
 }

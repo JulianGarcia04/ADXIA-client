@@ -5,7 +5,7 @@ function Document() {
     <Html>
       <Head />
       <body>
-        <div id="modalContainer"></div>
+        <div id="portal" className="portal"></div>
         <Main />
         <NextScript />
       </body>

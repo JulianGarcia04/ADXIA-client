@@ -7,7 +7,6 @@ import style from './add.module.scss';
 import { useIsFetching, useMutation, useQueryClient } from 'react-query';
 import ButtonsNavBar from '~/components/ButtonsNavBar/ButtonsNavBar';
 import { OrderProducts } from '~/components/OrderProducts/OrderProducts';
-import ProductsSkeleton from '~/components/ProductsSkeleton/View';
 import { useOrder } from '~/contexts/orderContext';
 import ClientCard from '~/components/ClientCard/ClientCard';
 import { agent } from '~/agent';

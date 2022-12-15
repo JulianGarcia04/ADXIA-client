@@ -8,6 +8,8 @@ import ProductsSkeleton from "~/components/ProductsSkeleton/View";
 import SearchInput from "~/components/SearchInput/SearchInput";
 import PrincipalLayout from "~/layout/PrincipalLayout";
 import { useSearch } from "~/contexts/searchContext";
+import { requiredEmployee } from "~/helpers/requiredEmployee";
+import { EMPLOYEE_TYPE_ADMIN, EMPLOYEE_TYPE_VENDOR } from "~/constants/employeeTypes";
 
 function Index() {
   const isFetchingProducts = useIsFetching(["products"]);
@@ -47,3 +49,13 @@ function Index() {
 }
 
 export default Index;
+
+export const getServerSideProps = requiredEmployee((employee)=> {
+  
+  if((employee.type === EMPLOYEE_TYPE_ADMIN ||
+    employee.type === EMPLOYEE_TYPE_VENDOR)) {
+    return {props: {employee}};
+  }
+
+  return {props: {}, redirect: {destination: "/home"}};
+});

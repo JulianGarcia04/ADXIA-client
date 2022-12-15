@@ -4,18 +4,16 @@ import ProductCard from "~/components/ProductCard/ProductCard";
 import { NothingMessage } from "~/components/NothingMessage/NothingMessage";
 
 function View({ products, onSelectProduct }) {
-  return (
+  return (Array.isArray(products) && products.length) ?
     <div className={styles.products}>
-      {(products && products.length === 0) ? 
-      <NothingMessage message="No hay productos para seleccionar"/> : null}
-      {products ? products.map((product)=> (
+      {products.map((product)=> (
         <ProductCard 
-          key={product.id} 
-          productData={product} 
-          onClick={()=> onSelectProduct(product)}/>
-      )): null}
-    </div>
-  )
+        key={product.id} 
+        productData={product} 
+        onClick={()=> onSelectProduct(product)}/>
+        ))}
+    </div> :
+  <NothingMessage message="No hay productos"/>
 }
 
 export default View;

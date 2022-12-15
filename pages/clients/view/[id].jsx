@@ -13,6 +13,8 @@ import { agent } from "~/agent";
 import { ErrorModal } from "~/components/ErrorModal/ErrorModal";
 import Loading from "~/components/Loading/Loading";
 import { FormSkeleton } from "~/components/FormSkeleton/FormSkeleton";
+import { requiredEmployee } from "~/helpers/requiredEmployee";
+import { EMPLOYEE_TYPE_ADMIN, EMPLOYEE_TYPE_VENDOR } from "~/constants/employeeTypes";
 
 function Id(props) {
   const idForm = useId();
@@ -100,6 +102,7 @@ function Id(props) {
           onChange={()=> setChangedForm(true)}
           style={{width: "100%", display: "flex", flexDirection: "column", gap: "12px"}}>
             <ImageField 
+              readOnly={true}
               alt="image profile of a client" 
               src={client.imageURL}
               onImage={(image)=> setImage(image)}/>
@@ -114,7 +117,6 @@ function Id(props) {
             <TextField title={"Telefono"} type={"text"} name={"phone"} readOnly={true}/>
             <TextField title={"Dirección"} type={"text"} name={"address"} readOnly={true}/>
             <TextField title={"Business"} type={"text"} name={"business"} readOnly={true}/>
-            <TextField title={"Estado de entrega"} type={"text"} name={"deliveredState"} readOnly={true}/>
           </Form>
         )}
       </Formik>}
@@ -125,7 +127,12 @@ function Id(props) {
 
 export default Id;
 
-export const getServerSideProps = (ctx)=> {
+export const getServerSideProps = requiredEmployee((employee, ctx)=> {
+  
+  if((employee.type === EMPLOYEE_TYPE_ADMIN ||
+    employee.type === EMPLOYEE_TYPE_VENDOR)) {
+    return {props: {employee, clientId: ctx.params.id}};
+  }
 
-  return {props: {clientId: ctx.params.id}};
-}
+  return {props: {}, redirect: {destination: "/home"}};
+});

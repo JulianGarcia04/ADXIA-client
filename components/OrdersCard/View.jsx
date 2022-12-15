@@ -7,8 +7,9 @@ import OptionsModalCard from "~/components/OptionsModalCard/OptionsModalCard";
 import { useMutation, useQueryClient } from "react-query";
 import { agent } from "~/agent";
 import { useRouter } from "next/router";
+import { Portal } from "~/components/Portal/Portal";
 
-function View({ orderData, moreOption, stateModal }) {
+function View({ orderData, moreOption, stateModal, options }) {
   const router = useRouter();
 
   const queryClient = useQueryClient();
@@ -24,37 +25,41 @@ function View({ orderData, moreOption, stateModal }) {
   });
 
   return (
-    <div className={style.orderCard}>
-      {stateModal &&
-        document &&
-        ReactDOM.createPortal(
-          <ModalOptions changeStateModal={moreOption}>
-            <OptionsModalCard 
-              icon={<Edit3 size={28}/>} 
-              message="Editar pedido"
-              onClick={()=> router.push(`/orders/edit/${orderData.id}`)}/>
-            <OptionsModalCard 
-              icon={<Trash size={28}/>} 
-              message="Eliminar pedido"
-              onClick={()=> deleteOrderMutation.mutate(orderData)}/>
-          </ModalOptions>,
-          document.getElementById("modalContainer")
-        )}
-      <div className={style.clientInfo}>
-        <img className={style.image} src={orderData.client.imageURL} alt="client image"/>
-        <div className={style.info}>
-          <p className={style.name}>{orderData.client.name}</p>
-          <p className={style.business}>{orderData.client.business}</p>
-        </div> 
-        <MoreVertical width={32} height={32} onClick={moreOption}/>
-      </div>
-      <div className={style.sectionInfo}>
-        <div className={style.row}>
-          <p className={style.label}>Total:</p>
-          <p className={style.value}>${orderData.total}</p>
+    <>
+      <ModalOptions changeStateModal={moreOption} visible={stateModal}>
+        <OptionsModalCard 
+          icon={<Edit3 size={28}/>} 
+          message="Editar pedido"
+          onClick={()=> router.push(`/orders/edit/${orderData.id}`)}/>
+        <OptionsModalCard 
+          icon={<Trash size={28}/>} 
+          message="Eliminar pedido"
+          onClick={()=> deleteOrderMutation.mutate(orderData)}/>
+      </ModalOptions>
+      <div className={style.orderCard} 
+        onClick={()=> router.push(`/orders/view/${orderData.id}`)}>
+        <div className={style.clientInfo}>
+          <img className={style.image} src={orderData.client.imageURL} alt="client image"/>
+          <div className={style.info}>
+            <p className={style.name}>{orderData.client.name}</p>
+            <p className={style.business}>{orderData.client.business}</p>
+          </div> 
+          {options ? 
+            <div className={style.options} onClick={(ev)=> {
+              ev.stopPropagation();
+            }}>
+              <MoreVertical onClick={moreOption}/> 
+            </div>
+          : null}
+        </div>
+        <div className={style.sectionInfo}>
+          <div className={style.row}>
+            <p className={style.label}>Total:</p>
+            <p className={style.value}>${orderData.total}</p>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

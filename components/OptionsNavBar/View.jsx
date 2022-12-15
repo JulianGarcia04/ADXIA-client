@@ -15,7 +15,6 @@ function View({linkAdd, path}) {
           <Home />
         </div>
       </Link>
-
       {!(employee?.type === EMPLOYEE_TYPE_DELIVERER) ? 
         <Link href={linkAdd}>
           <div className={styles.add}>
@@ -25,7 +24,6 @@ function View({linkAdd, path}) {
         : 
         null
       }
-
       <Link href={"/updateing"}>
         <div className={(path==='/updateing'?'active ':'') + styles.iconContainer}>
           <BarChart2 color="#D6E0F6" />

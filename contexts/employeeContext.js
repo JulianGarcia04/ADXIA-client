@@ -5,9 +5,9 @@ const EmployeeContext = React.createContext({
   setEmployee: ()=> 1
 });
 
-export const EmployeeProvider = ({children})=> {
+export const EmployeeProvider = ({children, employee})=> {
   const initialState = {
-    employee: null
+    employee
   }
 
   const [state, setState] = React.useState(initialState);
@@ -35,7 +35,7 @@ export const EmployeeProvider = ({children})=> {
 export const useEmployee = (employeeLoaded)=> {
   const { employee, setEmployee } = React.useContext(EmployeeContext);
 
-  React.useEffect(()=> { setEmployee(employeeLoaded) }, []);
+  React.useEffect(()=> { setEmployee(employee || employeeLoaded) }, []);
 
   return { employee, setEmployee };
 }

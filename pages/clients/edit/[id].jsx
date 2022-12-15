@@ -13,6 +13,8 @@ import { agent } from "~/agent";
 import { ErrorModal } from "~/components/ErrorModal/ErrorModal";
 import Loading from "~/components/Loading/Loading";
 import { FormSkeleton } from "~/components/FormSkeleton/FormSkeleton";
+import { requiredEmployee } from "~/helpers/requiredEmployee";
+import { EMPLOYEE_TYPE_ADMIN, EMPLOYEE_TYPE_VENDOR } from "~/constants/employeeTypes";
 
 function Id(props) {
   const idForm = useId();
@@ -132,7 +134,12 @@ function Id(props) {
 
 export default Id;
 
-export const getServerSideProps = (ctx)=> {
+export const getServerSideProps = requiredEmployee((employee, ctx)=> {
+  
+  if((employee.type === EMPLOYEE_TYPE_ADMIN ||
+    employee.type === EMPLOYEE_TYPE_VENDOR)) {
+    return {props: {employee, clientId: ctx.params.id}};
+  }
 
-  return {props: {clientId: ctx.params.id}};
-}
+  return {props: {}, redirect: {destination: "/home"}};
+});

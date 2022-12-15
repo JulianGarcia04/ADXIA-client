@@ -23,8 +23,8 @@
     background-color: #fff;
 }
 
-.input:focus{
-    border: 2px solid var(--primary-background);
+.input:focus {
+    outline: 2px #2684ff solid;
 }
 
 .ErrorMessage {

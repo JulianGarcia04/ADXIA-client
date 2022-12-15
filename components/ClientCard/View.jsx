@@ -19,12 +19,15 @@ function View({clientData, options, onClick}) {
   });
 
   return (
-    <PersonCard personData={{
-      imageURL: clientData.imageURL,
-      name: clientData.name,
-      surname: clientData.surname,
-      info: clientData.business
-    }} options={options} onClick={onClick}>
+    <PersonCard 
+      personData={{
+        imageURL: clientData.imageURL,
+        name: clientData.name,
+        surname: clientData.surname,
+        info: clientData.business
+      }} 
+      options={options} 
+      onClick={onClick}>
       <OptionsModalCard
         icon={<Edit3 width={27} height={27} />}
         href={`/clients/edit/${clientData.id}`}

@@ -15,7 +15,7 @@ function View({clients, onSelectClient, inEdit}) {
 
   const router = useRouter();
 
-  return (
+  return (Array.isArray(clients) && clients.length)  ?
     <div className={styles.clients}>
       <DialogModal 
         visible={openedError}
@@ -33,9 +33,7 @@ function View({clients, onSelectClient, inEdit}) {
               onClick={()=> setOpenedError(false)}/>
           </div>
         }/>
-      {(clients && clients.length === 0) ? 
-      <NothingMessage message="No hay clientes para seleccionar"/> : null}
-      {clients ? clients.map((client)=> {
+      {clients.map((client)=> {
 
         const EditClientCard = ()=> (
           <div 
@@ -93,9 +91,9 @@ function View({clients, onSelectClient, inEdit}) {
             {inEdit ? <EditClientCard/> : <AddClientCard/>}
           </div>
         )
-      }): null}
-    </div>
-  )
+      })}
+    </div> :
+  <NothingMessage message="No hay clientes"/>
 }
 
 export default View;

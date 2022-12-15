@@ -1,9 +1,10 @@
 .buttonsContainers{
-    display: flex;
+    gap: 8px;
     height: 48px;
+    display: flex;
+    width: 91.3333333%;
     align-items: center;
     justify-content: flex-end;
-    width: 91.3333333%;
 
     button{
         padding: 0px 20px;

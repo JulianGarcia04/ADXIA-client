@@ -14,6 +14,8 @@ import Loading from "~/components/Loading/Loading";
 import { ErrorModal } from "~/components/ErrorModal/ErrorModal";
 import { useRouter } from "next/router";
 import { FormSkeleton } from "~/components/FormSkeleton/FormSkeleton";
+import { requiredEmployee } from "~/helpers/requiredEmployee";
+import { EMPLOYEE_TYPE_ADMIN, EMPLOYEE_TYPE_VENDOR } from "~/constants/employeeTypes";
 
 function Index({employeeId}) {
   const idForm = useId();
@@ -56,7 +58,7 @@ function Index({employeeId}) {
       setOpenedModalError(true);
     }
   })
-
+  
   return (
     <PrincipalLayout title={"Editar empleado"}>
       {/* Create form */}
@@ -97,41 +99,50 @@ function Index({employeeId}) {
             }
           }}
         >
-          {({errors, touched})=> (
-            <Form id={`${idForm}-createEmployee`} className={styles.form} 
-            onChange={()=> setChangedForm(true)}
-            style={{width: "100%", display: "flex", flexDirection: "column", gap: "12px"}}>
-              <ImageField 
-                alt="product image" 
-                src={employee.imageURL}
-                onImage={(image)=> setImage(image)}/>
-              <TextField 
-                  title={"Rol"} type={"text"} name={"type"}
-                  defaultValue={{label: "Vendedor", value: "VENDOR"}}
-                  selectables={[
-                    {label: "Vendedor", value: "VENDOR"},
-                    {label: "Administrador", value: "ADMIN"},
-                    {label: "Entregador", value: "DELIVERER"}
-                ]}
-              />
-              <TextField title={"Nombre"} type={"text"} name={"name"} />
-              <TextField title={"Apellido"} type={"text"} name={"surname"} />
-              <TextField title={"Correo"} type={"text"} name={"email"} />
-              <TextField title={"Numero de documento"} type={"text"} name={"nroDocument"} />
-              <TextField title={"Fecha de nacimiento"} type={"date"} name={"birthDate"} />
-              <TextField title={"Numero de telefono"} type={"text"} name={"phone"} />
-              <TextField title={"Codigo de acceso"} type={"text"} name={"accessCode"} disabled/>
-              <NavBar>  
-                <ButtonsNavBar
-                  title={"Guardar"}
-                  type="submit"
-                  height={"45%"}
-                  disabled={!changedForm || Object.keys(errors).length}
-                  form={`${idForm}-createEmployee`}
+          {({errors, values, initialValues, touched})=> {
+
+            React.useEffect(()=> {
+              const equals = JSON.stringify(values) === JSON.stringify(initialValues);
+              setChangedForm(equals ? false : true);
+            }, [values]);
+
+            return (
+              <Form id={`${idForm}-createEmployee`} className={styles.form} 
+              style={{width: "100%", display: "flex", flexDirection: "column", gap: "12px"}}>
+                {console.log("paso")}
+                <ImageField 
+                  alt="product image" 
+                  src={employee.imageURL}
+                  onImage={(image)=> setImage(image)}/>
+                <TextField 
+                    title={"Rol"} type={"text"} name={"type"}
+                    defaultValue={{label: "Vendedor", value: "VENDOR"}}
+                    selectables={[
+                      {label: "Vendedor", value: "VENDOR"},
+                      {label: "Administrador", value: "ADMIN"},
+                      {label: "Entregador", value: "DELIVERER"}
+                  ]}
                 />
-              </NavBar>
-            </Form>
-          )}
+                {console.log(values)}
+                <TextField title={"Nombre"} type={"text"} name={"name"} />
+                <TextField title={"Apellido"} type={"text"} name={"surname"} />
+                <TextField title={"Correo"} type={"text"} name={"email"} />
+                <TextField title={"Numero de documento"} type={"text"} name={"nroDocument"} />
+                <TextField title={"Fecha de nacimiento"} type={"date"} name={"birthDate"} />
+                <TextField title={"Numero de telefono"} type={"text"} name={"phone"} />
+                <TextField title={"Codigo de acceso"} type={"text"} name={"accessCode"} disabled/>
+                <NavBar>  
+                  <ButtonsNavBar
+                    title={"Guardar"}
+                    type="submit"
+                    height={"45%"}
+                    disabled={!changedForm || Object.keys(errors).length}
+                    form={`${idForm}-createEmployee`}
+                  />
+                </NavBar>
+              </Form>
+            )
+          }}
         </Formik>}
     </PrincipalLayout>
   );
@@ -139,7 +150,13 @@ function Index({employeeId}) {
 
 export default Index;
 
-export const getServerSideProps = (ctx)=> {
+export const getServerSideProps = requiredEmployee((employee, ctx)=> {
 
-  return {props: {employeeId: ctx.params.id}};
-}
+  
+  if((employee.type === EMPLOYEE_TYPE_ADMIN ||
+    employee.type === EMPLOYEE_TYPE_VENDOR)) {
+    return {props: {employee, employeeId: ctx.params.id}};
+  }
+
+  return {props: {}, redirect: {destination: "/home"}};
+});

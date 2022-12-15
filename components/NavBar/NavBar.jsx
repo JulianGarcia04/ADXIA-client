@@ -1,10 +1,10 @@
 import React from 'react'
 import View from './View'
 
-function NavBar({children, acomodate}) {
+function NavBar({children}) {
   return (
-    <View acomodate={acomodate}>
-        {children}
+    <View>
+      {children}
     </View>
   )
 }

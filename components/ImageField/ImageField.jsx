@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import useCreateUrl from '~/hooks/useCreateUrl';
 import View from './View';
 
-function ImageField({alt, src, onImage}) {
+function ImageField({alt, src, onImage, readOnly}) {
     const [fileInput, setFileInput] = useState('');
     const { image } = useCreateUrl(fileInput);
 
@@ -17,7 +17,7 @@ function ImageField({alt, src, onImage}) {
     }
     
     return (
-        <View onChange={getFile} src={image||src} alt={alt} />
+        <View onChange={getFile} src={image||src} alt={alt} readOnly={readOnly}/>
     )
 }
 

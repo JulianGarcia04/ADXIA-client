@@ -8,6 +8,9 @@ import style from "./clients.module.scss";
 import { Clients } from "~/components/Clients/Clients";
 import { ClientsSkeleton } from "~/components/ClientsSkeleton/ClientsSkeleton";
 import { useSearch } from "~/contexts/searchContext";
+import { HomeNavBar } from "~/components/HomeNavBar/HomeNavBar";
+import { requiredEmployee } from "~/helpers/requiredEmployee";
+import { EMPLOYEE_TYPE_ADMIN, EMPLOYEE_TYPE_VENDOR } from "~/constants/employeeTypes";
 
 function Index() {
   const isFetchingClients = useIsFetching(["clients"]);
@@ -38,11 +41,21 @@ function Index() {
       }
     >
       {isFetchingClients ? <ClientsSkeleton/> : <Clients/>}  
-      <NavBar>
+      <HomeNavBar>
         <OptionsNavBar linkAdd={"/clients/add"} />
-      </NavBar>
+      </HomeNavBar>
     </PrincipalLayout>
   );
 }
 
 export default Index;
+
+export const getServerSideProps = requiredEmployee((employee)=> {
+  
+  if((employee.type === EMPLOYEE_TYPE_ADMIN ||
+    employee.type === EMPLOYEE_TYPE_VENDOR)) {
+    return {props: {employee}};
+  }
+
+  return {props: {}, redirect: {destination: "/home"}};
+});

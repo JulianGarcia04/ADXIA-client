@@ -76,3 +76,13 @@
     background-color: white;
     border: none;
 }
+
+.options {
+    width: 40px;
+    height: 40px;
+    right: 12px;
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+}

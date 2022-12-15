@@ -7,7 +7,6 @@ export default function DefaultLayout({children, className}) {
         width: "100%", 
         display: "flex", 
         flexDirection: "column", 
-        minHeight: "100vh",
         position: "relative"
       }}>
         {children}

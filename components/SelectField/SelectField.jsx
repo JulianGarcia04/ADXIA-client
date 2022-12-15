@@ -1,13 +1,14 @@
 import React from "react";
 import View from "./View";
 
-function SelectField({defaultValue, options, field, form}) {
+function SelectField({defaultValue, options, field, form, readOnly}) {
   return (
     <View 
       defaultValue={defaultValue}
       options={options} 
       field={field}
-      form={form}/>
+      form={form}
+      readOnly={readOnly}/>
   )
 }
 

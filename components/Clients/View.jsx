@@ -8,19 +8,17 @@ function View({clients}) {
 
   const router = useRouter();
 
-  return (
+  return (Array.isArray(clients) && clients.length) ?
     <div className={styles.clients}>
-      {(clients && clients.length === 0) ? 
-      <NothingMessage message="No hay clientes"/> : null}
-      {clients ? clients.map((client)=> (
+      {clients.map((client)=> (
         <ClientCard 
           key={client.id} 
           clientData={client} 
           options 
           onClick={()=> router.push(`/clients/view/${client.id}`)}/>
-      )): null}
-    </div>
-  )
+      ))}
+    </div> :
+    <NothingMessage message="No hay clientes"/>
 }
 
 export default View;

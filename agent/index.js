@@ -30,12 +30,12 @@ const Employee = {
     return (await http.get(`/employee?employeeId=${employeeId}`)).data.employee;
   },
   getList: async (skip, limit, searchValue)=> {
-    await delay(2000);
+    await delay(1000);
 
     return (await http.get(`/employees?skip=${skip}&&limit=${limit}&&search=${searchValue}`)).data.employees;
   },
   create: async (data)=> {
-    await delay(2000);
+    await delay(1000);
 
     const employee = (
       await http.post("/employee", 
@@ -55,7 +55,7 @@ const Employee = {
     return employee;
   },
   update: async (employee)=> {
-    await delay(2000);
+    await delay(1000);
 
     return (
       await http.put(`/employee?employeeId=${employee.id}`, 
@@ -96,17 +96,17 @@ const Employee = {
 
 const Client = {
   getById: async (clientId)=> {
-    await delay(2000);
+    await delay(1000);
 
     return (await http.get(`/client?clientId=${clientId}`)).data.client;
   },
   getList: async (skip, limit, searchValue)=> {
-    await delay(2000);
+    await delay(1000);
 
     return (await http.get(`/clients?skip=${skip}&&limit=${limit}&&search=${searchValue}`)).data.clients;
   },
   create: async (data)=> {
-    await delay(2000);
+    await delay(1000);
 
     const client = (await http.post(`/client`, {
       name: data.name,
@@ -176,7 +176,7 @@ const Order = {
     return populatedOrder;
   },
   getList: async (skip, limit, searchValue)=> {
-    await delay(2000);
+    await delay(1000);
  
     const orders = (await http.get(`/orders?skip=${skip}&&limit=${limit}&&search=${searchValue}`)).data.orders;
 
@@ -205,7 +205,7 @@ const Order = {
     return (await http.get(`/order/products?orderId=${order.id}&&skip=${skip}&&limit=${limit}`)).data.products
   },
   create: async (data)=> {
-    await delay(2000);
+    await delay(1000);
 
     const products = data.products.map((product)=> (
       {productId: product.productId, quantity: product.quantity}
@@ -223,19 +223,28 @@ const Order = {
   },
   update: async (order)=> {
 
-    await delay(2000);
+    await delay(1000);
 
-    const products = order.products.map((product)=> (
-      {productId: product.productId, quantity: product.quantity}
-    ));
-
-    return (await http.put(
-      `/order?orderId=${order.id}`,
-      {
-        clientId: order.clientId,
-        products: products
-      }
-    )).data;
+    if(order.products) {
+      const products = order.products.map((product)=> (
+        {productId: product.productId, quantity: product.quantity}
+      ));
+  
+      return (await http.put(
+        `/order?orderId=${order.id}`,
+        {
+          clientId: order.clientId,
+          products: products
+        }
+      )).data;
+    }else {
+      return (await http.put(
+        `/order?orderId=${order.id}`,
+        {
+          deliveryState: order.deliveryState
+        }
+      )).data;
+    }
   },
   delete: async (order)=> {
     return (await http.delete(`/order?orderId=${order.id}`)).data;
@@ -247,14 +256,14 @@ const Product = {
     return (await http.get(`/product?productId=${productId}`)).data.product;
   },
   getList: async (skip, limit, searchValue)=> {
-    await delay(2000);
+    await delay(1000);
 
     const products = (await http.get(`/products?skip=${skip}&&limit=${limit}&&search=${searchValue}`)).data.products;
 
     return products;
   },
   create: async (data)=> {
-    await delay(2000);
+    await delay(1000);
 
     const product = (await http.post(
       `/product`,

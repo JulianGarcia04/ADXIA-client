@@ -21,7 +21,7 @@ function PrincipalLayout({children, title, className, header, color, backHref}) 
             {header}
         </header>
         <div style={{
-          width: "400px",
+          width: "100%",
           padding: "12px 12px", 
           boxSizing: "border-box",
         }}>

@@ -12,6 +12,7 @@ import FigureBackground from "@/components/FigureBackground/FigureBackground";
 import { getEmployeeFromRequest } from "~/helpers/getEmployeeFromRequest";
 import { useIsMutating, useMutation } from "react-query";
 import { agent } from "~/agent";
+import { Portal } from "~/components/Portal/Portal";
 
 export default function Index() {
   const router = useRouter();
@@ -33,8 +34,10 @@ export default function Index() {
       <Loading 
         label="Verificando datos.." 
         visible={loginEmployeeMutation.isLoading ? true : false}/>
-      <FigureBackground src={Figure} top={35} right={0}/>
-      <FigureBackground src={Figure} bottom={25} left={0}/>
+      <Portal>
+        <img className={style.figure1} src="/image/squares1.svg" alt="figura"/>
+        <img className={style.figure2} src="/image/squares1.svg" alt="figura"/>
+      </Portal>
       <div className={style.formContainer}>
         <h6>Ingresar a la plataforma</h6>
         <h1>Hey!! ingresa los siguientes datos para ingresar</h1>

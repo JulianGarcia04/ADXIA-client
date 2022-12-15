@@ -1,5 +1,6 @@
 import React from "react";
 import styles from './styles.module.scss';
+import { Portal } from "~/components/Portal/Portal";
 
 function View({ label, visible }) {
 
@@ -10,12 +11,14 @@ function View({ label, visible }) {
   }
 
   return (
-    <div className={styles.loading} style={sxLoading}>
-      <div className={styles.container}>
-        <div className={styles.circle}></div>
-        <p className={styles.label}>{label}</p>
+    <Portal>
+      <div className={styles.loading} style={sxLoading}>
+        <div className={styles.container}>
+          <div className={styles.circle}></div>
+          <p className={styles.label}>{label}</p>
+        </div>
       </div>
-    </div>
+    </Portal>
   )
 }
 
